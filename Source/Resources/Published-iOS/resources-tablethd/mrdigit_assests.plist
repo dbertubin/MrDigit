@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>mrdigit_assests/digit_standing2x.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2048, 111}, {64, 184}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {64, 184}}</string>
+			<key>sourceSize</key>
+			<string>{64, 184}</string>
+		</dict>
+		<key>mrdigit_assests/forest-1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2048, 1286}, {2029, 2033}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {2029, 2033}}</string>
+			<key>sourceSize</key>
+			<string>{2030, 2034}</string>
+		</dict>
+		<key>mrdigit_assests/forest-2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 2014}, {1821, 1983}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {1821, 1983}}</string>
+			<key>sourceSize</key>
+			<string>{1822, 1984}</string>
+		</dict>
+		<key>mrdigit_assests/forest-3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 111}, {2045, 1901}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {2045, 1901}}</string>
+			<key>sourceSize</key>
+			<string>{2046, 1902}</string>
+		</dict>
+		<key>mrdigit_assests/forest-4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2275, 1}, {1799, 1283}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {1799, 1283}}</string>
+			<key>sourceSize</key>
+			<string>{1800, 1284}</string>
+		</dict>
+		<key>mrdigit_assests/ground.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {2272, 108}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {2272, 108}}</string>
+			<key>sourceSize</key>
+			<string>{2272, 108}</string>
+		</dict>
+		<key>mrdigit_assests/ninja_standing2x.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2048, 177}, {66, 181}}</string>
+			<key>offset</key>
+			<string>{-2, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{3, 1}, {66, 181}}</string>
+			<key>sourceSize</key>
+			<string>{76, 182}</string>
+		</dict>
+		<key>mrdigit_assests/sky.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1986, 3317}, {966, 678}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {966, 678}}</string>
+			<key>sourceSize</key>
+			<string>{966, 678}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{8192, 8192}</string>
+		<key>textureFileName</key>
+		<string>mrdigit_assests.png</string>
+	</dict>
+</dict>
+</plist>

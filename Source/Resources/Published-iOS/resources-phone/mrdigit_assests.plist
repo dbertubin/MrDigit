@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>mrdigit_assests/digit_standing2x.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{514, 30}, {16, 46}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {16, 46}}</string>
+			<key>sourceSize</key>
+			<string>{16, 46}</string>
+		</dict>
+		<key>mrdigit_assests/forest-1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{514, 324}, {507, 508}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {507, 508}}</string>
+			<key>sourceSize</key>
+			<string>{507, 508}</string>
+		</dict>
+		<key>mrdigit_assests/forest-2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 507}, {455, 496}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {455, 496}}</string>
+			<key>sourceSize</key>
+			<string>{455, 496}</string>
+		</dict>
+		<key>mrdigit_assests/forest-3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 30}, {511, 475}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {511, 475}}</string>
+			<key>sourceSize</key>
+			<string>{511, 475}</string>
+		</dict>
+		<key>mrdigit_assests/forest-4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{571, 1}, {450, 321}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {450, 321}}</string>
+			<key>sourceSize</key>
+			<string>{450, 321}</string>
+		</dict>
+		<key>mrdigit_assests/ground.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {568, 27}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {568, 27}}</string>
+			<key>sourceSize</key>
+			<string>{568, 27}</string>
+		</dict>
+		<key>mrdigit_assests/ninja_standing2x.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{514, 48}, {16, 45}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{1, 0}, {16, 45}}</string>
+			<key>sourceSize</key>
+			<string>{19, 45}</string>
+		</dict>
+		<key>mrdigit_assests/sky.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{499, 833}, {241, 169}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {241, 169}}</string>
+			<key>sourceSize</key>
+			<string>{241, 169}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{2048, 2048}</string>
+		<key>textureFileName</key>
+		<string>mrdigit_assests.png</string>
+	</dict>
+</dict>
+</plist>
