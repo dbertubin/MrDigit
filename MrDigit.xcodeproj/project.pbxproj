@@ -44,6 +44,7 @@
 		E596A8D41925AD5A00048D3B /* hit_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E596A8D31925AD5A00048D3B /* hit_sound.mp3 */; };
 		E596A8D71925AE1C00048D3B /* fire_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E596A8D61925AE1C00048D3B /* fire_sound.mp3 */; };
 		E596A8D91925B45E00048D3B /* P2E_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E596A8D81925B45E00048D3B /* P2E_sound.mp3 */; };
+		E596A8DC1925C71700048D3B /* Mouse.m in Sources */ = {isa = PBXBuildFile; fileRef = E596A8DB1925C71700048D3B /* Mouse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,8 @@
 		E596A8D31925AD5A00048D3B /* hit_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit_sound.mp3; sourceTree = "<group>"; };
 		E596A8D61925AE1C00048D3B /* fire_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fire_sound.mp3; sourceTree = "<group>"; };
 		E596A8D81925B45E00048D3B /* P2E_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = P2E_sound.mp3; sourceTree = "<group>"; };
+		E596A8DA1925C71700048D3B /* Mouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mouse.h; path = Source/Mouse.h; sourceTree = "<group>"; };
+		E596A8DB1925C71700048D3B /* Mouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mouse.m; path = Source/Mouse.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +155,8 @@
 				E530B000191C6B5F0030AC78 /* Gameplay.m */,
 				E530AFF8191C65980030AC78 /* Digit.h */,
 				E530AFF9191C65980030AC78 /* Digit.m */,
+				E596A8DA1925C71700048D3B /* Mouse.h */,
+				E596A8DB1925C71700048D3B /* Mouse.m */,
 				E530AFFC191C65B00030AC78 /* Ninja.h */,
 				E530AFFD191C65B00030AC78 /* Ninja.m */,
 				E59147F119240C8C00596A65 /* Burst.h */,
@@ -361,6 +366,7 @@
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				E530AFFE191C65B00030AC78 /* Ninja.m in Sources */,
 				E59147F319240C8C00596A65 /* Burst.m in Sources */,
+				E596A8DC1925C71700048D3B /* Mouse.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				E530AFFA191C65980030AC78 /* Digit.m in Sources */,

@@ -67,7 +67,6 @@
         
     }
 
-
 }
 
 - (void)onBack{
@@ -82,11 +81,8 @@
 
     
     CCLOG(@"This happened");
-    [[CCDirector sharedDirector] view];
     CGPoint touchLocation = [touch locationInNode:self];
-//    _mouseNode.physicsBody = CCPhysicsBodyTypeDynamic;
-//    [_physicsNode addChild:_mouseNode];
-//    _mouseNode.position = touchLocation;
+    _mouseNode.position = touchLocation;
     
     if (CGRectContainsPoint([_digit boundingBox], touchLocation))
     {
@@ -136,7 +132,7 @@
     CCNode* burst = [CCBReader load:@"Burst"];
     CCLOG(@"loads the Burst.ccb");
     
-    burst.position = ccpAdd(_digit.position, ccp(110, 85));
+    burst.position = ccpAdd(_digit.position, ccp(45, 25));
     
     [_physicsNode addChild:burst];
     [_audio playEffect:@"fire_sound.mp3"];
@@ -161,20 +157,6 @@
     }
 }
 
-
-//-(void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair digit:(CCNode *)nodeA wildcard:(CCNode *)nodeB
-//{
-//     [_audio playEffect:@"P2E_sound.mp3"];
-//}
-
-
-
-
-- (void)selectNodeForTouch:(CGPoint)touchLocation {
-
-    //    [_audio playEffect:@"P2E_sound.mp3"];
-    
-}
 
 - (void)ninjaRemoved:(CCNode *)ninja {
     // load explsion particle effect
