@@ -10,4 +10,8 @@
 
 @implementation Ninja
 
+- (void)didLoadFromCCB {
+    self.physicsBody.collisionType = @"ninja";
+}
+
 @end

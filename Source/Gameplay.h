@@ -7,7 +7,11 @@
 //
 
 #import "CCNode.h"
+#import "Digit.h"
+#import "Burst.h"
+#import "Ninja.h"
 
-@interface Gameplay : CCNode   <CCPhysicsCollisionDelegate>
+
+@interface Gameplay : CCNode   <CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate>
 
 @end

@@ -174,6 +174,8 @@
 		</dict>
 		<key>mrdigit_assests</key>
 		<dict>
+			<key>isDirty</key>
+			<true/>
 			<key>isSmartSpriteSheet</key>
 			<true/>
 		</dict>

@@ -10,4 +10,9 @@
 
 @implementation Digit
 
+- (void)didLoadFromCCB {
+    self.physicsBody.collisionType = @"digit";
+}
+
+
 @end

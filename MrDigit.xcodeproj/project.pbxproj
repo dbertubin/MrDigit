@@ -40,6 +40,10 @@
 		E530B001191C6B5F0030AC78 /* Gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = E530B000191C6B5F0030AC78 /* Gameplay.m */; };
 		E530B005191C6DEF0030AC78 /* woodblock_hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E530B004191C6DEF0030AC78 /* woodblock_hit.mp3 */; };
 		E530B007191C738B0030AC78 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E530B006191C738B0030AC78 /* background.mp3 */; };
+		E59147F319240C8C00596A65 /* Burst.m in Sources */ = {isa = PBXBuildFile; fileRef = E59147F219240C8C00596A65 /* Burst.m */; };
+		E596A8D41925AD5A00048D3B /* hit_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E596A8D31925AD5A00048D3B /* hit_sound.mp3 */; };
+		E596A8D71925AE1C00048D3B /* fire_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E596A8D61925AE1C00048D3B /* fire_sound.mp3 */; };
+		E596A8D91925B45E00048D3B /* P2E_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E596A8D81925B45E00048D3B /* P2E_sound.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +105,11 @@
 		E530B000191C6B5F0030AC78 /* Gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gameplay.m; path = Source/Gameplay.m; sourceTree = "<group>"; };
 		E530B004191C6DEF0030AC78 /* woodblock_hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = woodblock_hit.mp3; sourceTree = "<group>"; };
 		E530B006191C738B0030AC78 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
+		E59147F119240C8C00596A65 /* Burst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Burst.h; path = Source/Burst.h; sourceTree = "<group>"; };
+		E59147F219240C8C00596A65 /* Burst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Burst.m; path = Source/Burst.m; sourceTree = "<group>"; };
+		E596A8D31925AD5A00048D3B /* hit_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit_sound.mp3; sourceTree = "<group>"; };
+		E596A8D61925AE1C00048D3B /* fire_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fire_sound.mp3; sourceTree = "<group>"; };
+		E596A8D81925B45E00048D3B /* P2E_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = P2E_sound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +154,8 @@
 				E530AFF9191C65980030AC78 /* Digit.m */,
 				E530AFFC191C65B00030AC78 /* Ninja.h */,
 				E530AFFD191C65B00030AC78 /* Ninja.m */,
+				E59147F119240C8C00596A65 /* Burst.h */,
+				E59147F219240C8C00596A65 /* Burst.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -218,6 +229,9 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E596A8D81925B45E00048D3B /* P2E_sound.mp3 */,
+				E596A8D61925AE1C00048D3B /* fire_sound.mp3 */,
+				E596A8D31925AD5A00048D3B /* hit_sound.mp3 */,
 				E530B006191C738B0030AC78 /* background.mp3 */,
 				E530B004191C6DEF0030AC78 /* woodblock_hit.mp3 */,
 				B73789911807667A0076A88C /* Icons */,
@@ -267,7 +281,7 @@
 				ORGANIZATIONNAME = Apportable;
 				TargetAttributes = {
 					B77F1B2D17B978D7009739AE = {
-						DevelopmentTeam = SBVP8ED765;
+						DevelopmentTeam = A6V685Y527;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 0;
@@ -318,7 +332,10 @@
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
+				E596A8D41925AD5A00048D3B /* hit_sound.mp3 in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
+				E596A8D91925B45E00048D3B /* P2E_sound.mp3 in Resources */,
+				E596A8D71925AE1C00048D3B /* fire_sound.mp3 in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				E530B005191C6DEF0030AC78 /* woodblock_hit.mp3 in Resources */,
@@ -343,6 +360,7 @@
 			files = (
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				E530AFFE191C65B00030AC78 /* Ninja.m in Sources */,
+				E59147F319240C8C00596A65 /* Burst.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				E530AFFA191C65980030AC78 /* Digit.m in Sources */,
@@ -440,7 +458,7 @@
 					"\"Source/libs/cocos2d-iphone/external/ObjectAL\"/**",
 				);
 				INFOPLIST_FILE = Source/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -472,7 +490,7 @@
 					"\"Source/libs/cocos2d-iphone/external/ObjectAL\"/**",
 				);
 				INFOPLIST_FILE = Source/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
