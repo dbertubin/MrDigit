@@ -100,6 +100,10 @@
     if(swipe.direction == UISwipeGestureRecognizerDirectionUp)
     {
         CCLOG(@"Up ");
+        [_digit.physicsBody applyImpulse:ccp(0, 400.f)];
+        // clamp velocity
+        float yVelocity = clampf(_digit.physicsBody.velocity.y, -1 * MAXFLOAT, 200.f);
+        _digit.physicsBody.velocity = ccp(0, yVelocity);
     }
     
     else if(swipe.direction == UISwipeGestureRecognizerDirectionDown)
@@ -148,7 +152,7 @@
 {
     float energy = [pair totalKineticEnergy];
     CCLOG(@"This fired");
-    // if energy is large enough, remove the seal
+    // if energy is large enough, remove the ninja
     if (energy > 0.f)
     {
         [self ninjaRemoved:nodeA];
@@ -168,7 +172,7 @@
     explosion.position = ninja.position;
     [ninja.parent addChild:explosion];
     
-    // finally, remove the destroyed seal
+    // finally, remove the  ninja
     [ninja removeFromParent];
 }
 
