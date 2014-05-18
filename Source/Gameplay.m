@@ -7,8 +7,9 @@
 //
 
 #import "Gameplay.h"
-
+int MOVEBY = 100;
 @implementation Gameplay{
+    
     CCPhysicsNode *_physicsNode;
     OALSimpleAudio *_audio;
     UISwipeGestureRecognizer * _swipeRight;
@@ -20,6 +21,11 @@
     NSTimeInterval _sinceTouch;
     CCNode *_mouseNode;
     CGPoint _destinationPoint;
+    
+    BOOL movedLeft;
+    BOOL movedRight;
+    BOOL movedUp;
+    BOOL movedDown;
     
 }
 
@@ -93,7 +99,7 @@
         CCLOG(@"Youre not touching digit");
     }
     
-    
+//    _destinationPoint = touchLocation;
 }
 
 
@@ -104,35 +110,51 @@
     if(swipe.direction == UISwipeGestureRecognizerDirectionUp)
     {
         CCLOG(@"Up ");
-        _destinationPoint=  CGPointMake(_digit.position.x, _digit.position.y + 40);
-        
+        _destinationPoint=  CGPointMake(_digit.position.x, _digit.position.y + MOVEBY);
+        movedUp = true;
+        movedDown = false;
+        movedLeft = false;
+        movedRight = false;
     }
     
     else if(swipe.direction == UISwipeGestureRecognizerDirectionDown)
     {
         CCLOG(@"Down ");
+        movedUp = false;
+        movedDown = true;
+        movedLeft = false;
+        movedRight = false;
     }
     
     else if(swipe.direction == UISwipeGestureRecognizerDirectionLeft)
     {
         CCLOG(@"Left ");
-        CCLOG(@"Up ");
-        _destinationPoint=  CGPointMake(_digit.position.x - 40, _digit.position.y + 0);
+        
+        _destinationPoint=  CGPointMake(_digit.position.x - MOVEBY, _digit.position.y + 0);
+        movedUp = false;
+        movedDown = false;
+        movedLeft = true;
+        movedRight = false;
+        
         
     }
     
     else if(swipe.direction == UISwipeGestureRecognizerDirectionRight)
     {
         CCLOG(@"Right");
-        _destinationPoint=  CGPointMake(_digit.position.x + 40, _digit.position.y + 0);
+        _destinationPoint=  CGPointMake(_digit.position.x + MOVEBY, _digit.position.y + 0);
+        movedUp = false;
+        movedDown = false;
+        movedLeft = false;
+        movedRight = true;
     }
+    
 }
 
 
 - (void)update:(CCTime)delta
 {
-    
-    if (UISwipeGestureRecognizerDirectionRight)
+    if(movedRight)
     {
         CGPoint difValx;
         difValx.x = fabsf(_destinationPoint.x - _digit.position.x  );
@@ -146,13 +168,13 @@
     }
     
     
-    if (UISwipeGestureRecognizerDirectionLeft)
+    if (movedLeft)
     {
         CGPoint difValx;
         difValx.x = fabsf(_destinationPoint.x - _digit.position.x  );
-        CGPoint newlocaton =  CGPointMake(_digit.position.x + (difValx.x*delta), _digit.position.y);
+        CGPoint newlocaton =  CGPointMake(_digit.position.x - (difValx.x*delta), _digit.position.y);
         CCActionMoveTo * moveTo = [CCActionMoveTo actionWithDuration:delta position:newlocaton];
-        if (_digit.position.x < _destinationPoint.x) {
+        if (_digit.position.x > _destinationPoint.x) {
             [_digit runAction:moveTo];
         }else if(_digit.position.x == _destinationPoint.x){
             [_digit stopAction:moveTo];
