@@ -67,16 +67,6 @@ static const int MOVEBY = 50;
 
 
 
-static CGSize designSize = {480, 320};
-
--(CGPoint) scalePoint:(CGPoint)point
-{
-    CGSize winSize = [[CCDirector sharedDirector]viewSize];
-    CGSize scaleFactor = CGSizeMake(winSize.width / designSize.width,
-                                    winSize.height / designSize.height);
-    return CGPointMake(point.x * scaleFactor.width, point.y * scaleFactor.height);
-}
-
 - (void)didLoadFromCCB {
     
 
@@ -84,7 +74,6 @@ static CGSize designSize = {480, 320};
 
     _gameOverBg.visible = NO;
     _menuBg.visible = NO;
-    
     
     scrollSpeed= 70.f;
     
@@ -113,7 +102,7 @@ static CGSize designSize = {480, 320};
     
     _audio= [OALSimpleAudio sharedInstance];
     // play sound background
-//    [_audio playBg:@"background.mp3" loop:true];
+    [_audio playBg:@"background.mp3" loop:true];
     
     /************************************************************************************
      Gestures
@@ -164,6 +153,8 @@ static CGSize designSize = {480, 320};
         _replayButton.visible = NO;
         _gameOverLabel.visible = NO;
         _menuButton.visible= NO;
+        _audio.paused = YES;
+
         
     } else
     {
@@ -175,6 +166,7 @@ static CGSize designSize = {480, 320};
         _resumeButton.visible = NO;
         _mmButton.visible = NO;
         _menuButton.visible= YES;
+        _audio.paused = NO;
     }
     
 }
@@ -361,6 +353,11 @@ static CGSize designSize = {480, 320};
     }
     
     
+    if (_walkingDigit.position.x < -20) {
+        [self gameOver];
+    }
+    
+    
 }
 
 
@@ -452,7 +449,7 @@ static CGSize designSize = {480, 320};
     CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"NinjaExplosion"];
     // clear effect , once it is completed
     explosion.autoRemoveOnFinish = TRUE;
-    // place the particle effect on the ninja position
+        // place the particle effect on the ninja position
     explosion.position = ninja.position;
     [ninja.parent addChild:explosion];
     
