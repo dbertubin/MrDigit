@@ -10,6 +10,7 @@
 #import "Digit.h"
 #import "Burst.h"
 #import "Ninja.h"
+#import "WalkingDigit.h"
 
 
 @interface Gameplay : CCNode   <CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate>

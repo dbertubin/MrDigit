@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>digitwalking/digit_0 copy 2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{377, 1}, {32, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{2, 0}, {32, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_0 copy 3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{471, 1}, {32, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{2, 0}, {32, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_0 copy 4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{95, 38}, {32, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{2, 0}, {32, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_0 copy.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{377, 35}, {32, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{2, 0}, {32, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_0.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{189, 38}, {32, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{2, 0}, {32, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_1 copy 2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 471}, {35, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_1 copy 3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{95, 1}, {35, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_1 copy 4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{189, 1}, {35, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_1 copy.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{39, 1}, {35, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{283, 1}, {35, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_2 copy 2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{283, 62}, {22, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{7, 0}, {22, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_2 copy 3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{95, 72}, {22, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{7, 0}, {22, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_2 copy 4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{189, 72}, {22, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{7, 0}, {22, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_2 copy.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{377, 93}, {22, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{7, 0}, {22, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{471, 95}, {22, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{7, 0}, {22, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_3 copy 2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{95, 96}, {20, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{8, 0}, {20, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_3 copy 3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{189, 96}, {20, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{8, 0}, {20, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_3 copy 4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{283, 110}, {20, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{8, 0}, {20, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_3 copy.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{377, 117}, {20, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{8, 0}, {20, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{95, 118}, {20, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{8, 0}, {20, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_4 copy 2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {36, 92}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1, 0}, {36, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_4 copy 3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 189}, {36, 92}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1, 0}, {36, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_4 copy 4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 283}, {36, 92}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1, 0}, {36, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_4 copy.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 95}, {36, 92}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1, 0}, {36, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 377}, {36, 92}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1, 0}, {36, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_5 copy 2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{63, 95}, {22, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{7, 0}, {22, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_5 copy 3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{283, 38}, {22, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{7, 0}, {22, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_5 copy 4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{377, 69}, {22, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{7, 0}, {22, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_5 copy.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{39, 95}, {22, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{7, 0}, {22, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+		<key>digitwalking/digit_5.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{283, 86}, {22, 92}}</string>
+			<key>offset</key>
+			<string>{-1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{7, 0}, {22, 92}}</string>
+			<key>sourceSize</key>
+			<string>{38, 92}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{512, 512}</string>
+		<key>textureFileName</key>
+		<string>digitwalking.png</string>
+	</dict>
+</dict>
+</plist>

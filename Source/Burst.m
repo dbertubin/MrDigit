@@ -2,7 +2,7 @@
 //  Burst.m
 //  MrDigit
 //
-//  Created by Derek Bertubin on 5/14/14.
+//  Created by Derek Bertubin on 5/20/14.
 //  Copyright (c) 2014 Apportable. All rights reserved.
 //
 
@@ -13,5 +13,6 @@
 - (void)didLoadFromCCB {
     self.physicsBody.collisionType = @"burst";
 }
+
 
 @end

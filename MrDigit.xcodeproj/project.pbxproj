@@ -40,7 +40,8 @@
 		E530B001191C6B5F0030AC78 /* Gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = E530B000191C6B5F0030AC78 /* Gameplay.m */; };
 		E530B005191C6DEF0030AC78 /* woodblock_hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E530B004191C6DEF0030AC78 /* woodblock_hit.mp3 */; };
 		E530B007191C738B0030AC78 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E530B006191C738B0030AC78 /* background.mp3 */; };
-		E59147F319240C8C00596A65 /* Burst.m in Sources */ = {isa = PBXBuildFile; fileRef = E59147F219240C8C00596A65 /* Burst.m */; };
+		E569FBC1192C2910000C956E /* Burst.m in Sources */ = {isa = PBXBuildFile; fileRef = E569FBC0192C2910000C956E /* Burst.m */; };
+		E587B6ED192988F900713DF6 /* WalkingDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = E587B6EC192988F900713DF6 /* WalkingDigit.m */; };
 		E596A8D41925AD5A00048D3B /* hit_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E596A8D31925AD5A00048D3B /* hit_sound.mp3 */; };
 		E596A8D71925AE1C00048D3B /* fire_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E596A8D61925AE1C00048D3B /* fire_sound.mp3 */; };
 		E596A8D91925B45E00048D3B /* P2E_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E596A8D81925B45E00048D3B /* P2E_sound.mp3 */; };
@@ -106,8 +107,10 @@
 		E530B000191C6B5F0030AC78 /* Gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gameplay.m; path = Source/Gameplay.m; sourceTree = "<group>"; };
 		E530B004191C6DEF0030AC78 /* woodblock_hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = woodblock_hit.mp3; sourceTree = "<group>"; };
 		E530B006191C738B0030AC78 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
-		E59147F119240C8C00596A65 /* Burst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Burst.h; path = Source/Burst.h; sourceTree = "<group>"; };
-		E59147F219240C8C00596A65 /* Burst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Burst.m; path = Source/Burst.m; sourceTree = "<group>"; };
+		E569FBBF192C2910000C956E /* Burst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Burst.h; path = Source/Burst.h; sourceTree = "<group>"; };
+		E569FBC0192C2910000C956E /* Burst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Burst.m; path = Source/Burst.m; sourceTree = "<group>"; };
+		E587B6EB192988F900713DF6 /* WalkingDigit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WalkingDigit.h; path = Source/WalkingDigit.h; sourceTree = "<group>"; };
+		E587B6EC192988F900713DF6 /* WalkingDigit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WalkingDigit.m; path = Source/WalkingDigit.m; sourceTree = "<group>"; };
 		E596A8D31925AD5A00048D3B /* hit_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit_sound.mp3; sourceTree = "<group>"; };
 		E596A8D61925AE1C00048D3B /* fire_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fire_sound.mp3; sourceTree = "<group>"; };
 		E596A8D81925B45E00048D3B /* P2E_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = P2E_sound.mp3; sourceTree = "<group>"; };
@@ -153,14 +156,16 @@
 				B7378993180767190076A88C /* MainScene.m */,
 				E530AFFF191C6B5F0030AC78 /* Gameplay.h */,
 				E530B000191C6B5F0030AC78 /* Gameplay.m */,
+				E587B6EB192988F900713DF6 /* WalkingDigit.h */,
+				E587B6EC192988F900713DF6 /* WalkingDigit.m */,
 				E530AFF8191C65980030AC78 /* Digit.h */,
 				E530AFF9191C65980030AC78 /* Digit.m */,
 				E596A8DA1925C71700048D3B /* Mouse.h */,
 				E596A8DB1925C71700048D3B /* Mouse.m */,
 				E530AFFC191C65B00030AC78 /* Ninja.h */,
 				E530AFFD191C65B00030AC78 /* Ninja.m */,
-				E59147F119240C8C00596A65 /* Burst.h */,
-				E59147F219240C8C00596A65 /* Burst.m */,
+				E569FBBF192C2910000C956E /* Burst.h */,
+				E569FBC0192C2910000C956E /* Burst.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -363,9 +368,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E587B6ED192988F900713DF6 /* WalkingDigit.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				E530AFFE191C65B00030AC78 /* Ninja.m in Sources */,
-				E59147F319240C8C00596A65 /* Burst.m in Sources */,
+				E569FBC1192C2910000C956E /* Burst.m in Sources */,
 				E596A8DC1925C71700048D3B /* Mouse.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,

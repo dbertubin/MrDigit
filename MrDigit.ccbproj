@@ -88,6 +88,8 @@
 			<key>previewFolderHidden</key>
 			<true/>
 		</dict>
+		<key>Ninja.ccbi</key>
+		<dict/>
 		<key>Sprites</key>
 		<dict/>
 		<key>ccbResources</key>
@@ -172,10 +174,13 @@
 			<key>tabletScale</key>
 			<integer>1</integer>
 		</dict>
+		<key>digitwalking</key>
+		<dict>
+			<key>isSmartSpriteSheet</key>
+			<true/>
+		</dict>
 		<key>mrdigit_assests</key>
 		<dict>
-			<key>isDirty</key>
-			<true/>
 			<key>isSmartSpriteSheet</key>
 			<true/>
 		</dict>

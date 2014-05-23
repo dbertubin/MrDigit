@@ -33,7 +33,7 @@
 		<key>mrdigit_assests/forest-1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{514, 324}, {507, 508}}</string>
+			<string>{{514, 163}, {507, 508}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -69,18 +69,18 @@
 			<key>sourceSize</key>
 			<string>{511, 475}</string>
 		</dict>
-		<key>mrdigit_assests/forest-4.png</key>
+		<key>mrdigit_assests/frameGuide.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{571, 1}, {450, 321}}</string>
+			<string>{{571, 1}, {160, 320}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
-			<false/>
+			<true/>
 			<key>sourceColorRect</key>
-			<string>{{0, 0}, {450, 321}}</string>
+			<string>{{0, 0}, {160, 320}}</string>
 			<key>sourceSize</key>
-			<string>{450, 321}</string>
+			<string>{160, 320}</string>
 		</dict>
 		<key>mrdigit_assests/ground.png</key>
 		<dict>
@@ -111,11 +111,11 @@
 		<key>mrdigit_assests/sky.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{499, 833}, {241, 169}}</string>
+			<string>{{499, 672}, {241, 169}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
-			<false/>
+			<true/>
 			<key>sourceColorRect</key>
 			<string>{{0, 0}, {241, 169}}</string>
 			<key>sourceSize</key>
@@ -127,7 +127,7 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>size</key>
-		<string>{2048, 2048}</string>
+		<string>{1024, 1024}</string>
 		<key>textureFileName</key>
 		<string>mrdigit_assests.png</string>
 	</dict>
