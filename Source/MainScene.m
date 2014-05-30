@@ -9,13 +9,74 @@
 #import "MainScene.h"
 
 @implementation MainScene
+{
+    NSUserDefaults * _prefs;
+    
+    
+}
+
+- (void)didLoadFromCCB {
+    
+    
+    
+    
+}
 - (void)play {
-    CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];
-    [[CCDirector sharedDirector] replaceScene:gameplayScene];
+    
+    _prefs = [NSUserDefaults standardUserDefaults];
+    if ([_prefs boolForKey:@"firstRun"] == YES) {
+        
+        
+        CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];
+        [[CCDirector sharedDirector] replaceScene:gameplayScene];
+        
+        // access audio object
+        OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+        // play sound effect
+        [audio playEffect:@"woodblock_hit.mp3"];
+        
+    }
+    else
+    {
+        CCScene *tutScene = [CCBReader loadAsScene:@"Tutorial"];
+        [[CCDirector sharedDirector] replaceScene:tutScene];
+        
+        // access audio object
+        OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+        // play sound effect
+        [audio playEffect:@"woodblock_hit.mp3"];
+        
+        [_prefs setBool:YES forKey:@"firstRun"];
+        [_prefs synchronize];
+    }
+    
+    
+}
+
+-(void)credits{
+    CCScene *creditsScene = [CCBReader loadAsScene:@"Credits"];
+    [[CCDirector sharedDirector] replaceScene:creditsScene];
     
     // access audio object
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
     // play sound effect
     [audio playEffect:@"woodblock_hit.mp3"];
+    
 }
+
+-(void)onTut{
+    CCScene *tutScene = [CCBReader loadAsScene:@"Tutorial"];
+    [[CCDirector sharedDirector] replaceScene:tutScene];
+    
+    // access audio object
+    OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+    // play sound effect
+    [audio playEffect:@"woodblock_hit.mp3"];
+    
+    [_prefs setBool:YES forKey:@"firstRun"];
+    [_prefs synchronize];
+    
+}
+
+
 @end

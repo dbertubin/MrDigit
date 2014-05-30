@@ -1,8 +1,8 @@
 //
-//  Gameplay.h
+//  Tutorial.h
 //  MrDigit
 //
-//  Created by Derek Bertubin on 5/8/14.
+//  Created by Derek Bertubin on 5/29/14.
 //  Copyright (c) 2014 Apportable. All rights reserved.
 //
 
@@ -13,6 +13,6 @@
 #import "WalkingDigit.h"
 #import "Coin.h"
 
-@interface Gameplay : CCNode <CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate>
+@interface Tutorial : CCNode <CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate>
 
 @end

@@ -25,7 +25,7 @@
 		<key>children</key>
 		<array/>
 		<key>customClass</key>
-		<string>Ninja</string>
+		<string>Coin</string>
 		<key>displayName</key>
 		<string>CCSprite</string>
 		<key>memberVarAssignmentName</key>
@@ -35,7 +35,7 @@
 		<key>physicsBody</key>
 		<dict>
 			<key>affectedByGravity</key>
-			<true/>
+			<false/>
 			<key>allowsRotation</key>
 			<false/>
 			<key>bodyShape</key>
@@ -43,11 +43,11 @@
 			<key>cornerRadius</key>
 			<real>0.0</real>
 			<key>density</key>
-			<real>25</real>
+			<real>1</real>
 			<key>dynamic</key>
 			<true/>
 			<key>elasticity</key>
-			<real>0.0</real>
+			<real>0.30000001192092896</real>
 			<key>friction</key>
 			<real>0.30000001192092896</real>
 			<key>points</key>
@@ -58,14 +58,14 @@
 				</array>
 				<array>
 					<real>0.0</real>
-					<real>45</real>
+					<real>102</real>
 				</array>
 				<array>
-					<real>19</real>
-					<real>45</real>
+					<real>77</real>
+					<real>102</real>
 				</array>
 				<array>
-					<real>19</real>
+					<real>77</real>
 					<real>0.0</real>
 				</array>
 			</array>
@@ -126,7 +126,7 @@
 				<key>value</key>
 				<array>
 					<string></string>
-					<string>mrdigit_assests/ninja_standing2x.png</string>
+					<string>mrdigit_assests/coin.png</string>
 				</array>
 			</dict>
 			<dict>

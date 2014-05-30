@@ -4,79 +4,79 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>mrdigit_assests/burst.png</key>
+		<key>mrdigit_assests/MenuBG.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{514, 30}, {67, 50}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0, 9}, {67, 50}}</string>
-			<key>sourceSize</key>
-			<string>{67, 68}</string>
-		</dict>
-		<key>mrdigit_assests/digit_standing2x.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{514, 99}, {16, 46}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0, 0}, {16, 46}}</string>
-			<key>sourceSize</key>
-			<string>{16, 46}</string>
-		</dict>
-		<key>mrdigit_assests/forest-1.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{514, 163}, {507, 508}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0, 0}, {507, 508}}</string>
-			<key>sourceSize</key>
-			<string>{507, 508}</string>
-		</dict>
-		<key>mrdigit_assests/forest-2.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{1, 507}, {455, 496}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0, 0}, {455, 496}}</string>
-			<key>sourceSize</key>
-			<string>{455, 496}</string>
-		</dict>
-		<key>mrdigit_assests/forest-3.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{1, 30}, {511, 475}}</string>
+			<string>{{571, 1}, {320, 568}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0, 0}, {511, 475}}</string>
+			<string>{{0, 0}, {320, 568}}</string>
 			<key>sourceSize</key>
-			<string>{511, 475}</string>
+			<string>{320, 568}</string>
 		</dict>
-		<key>mrdigit_assests/frameGuide.png</key>
+		<key>mrdigit_assests/bg.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{571, 1}, {160, 320}}</string>
+			<string>{{1, 1}, {568, 320}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {568, 320}}</string>
+			<key>sourceSize</key>
+			<string>{568, 320}</string>
+		</dict>
+		<key>mrdigit_assests/burst.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{893, 80}, {67, 50}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 9}, {67, 50}}</string>
+			<key>sourceSize</key>
+			<string>{67, 68}</string>
+		</dict>
+		<key>mrdigit_assests/coin.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{893, 1}, {77, 102}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
 			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {77, 102}}</string>
+			<key>sourceSize</key>
+			<string>{77, 102}</string>
+		</dict>
+		<key>mrdigit_assests/digit_standing2x.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{997, 1}, {16, 46}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {16, 46}}</string>
+			<key>sourceSize</key>
+			<string>{16, 46}</string>
+		</dict>
+		<key>mrdigit_assests/frameGuide.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 571}, {160, 320}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0, 0}, {160, 320}}</string>
 			<key>sourceSize</key>
@@ -85,7 +85,7 @@
 		<key>mrdigit_assests/ground.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 1}, {568, 27}}</string>
+			<string>{{1, 323}, {568, 27}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -98,11 +98,11 @@
 		<key>mrdigit_assests/ninja_standing2x.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{514, 117}, {16, 45}}</string>
+			<string>{{997, 49}, {16, 45}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{1, 0}, {16, 45}}</string>
 			<key>sourceSize</key>
@@ -111,11 +111,11 @@
 		<key>mrdigit_assests/sky.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{499, 672}, {241, 169}}</string>
+			<string>{{1, 352}, {241, 169}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0, 0}, {241, 169}}</string>
 			<key>sourceSize</key>

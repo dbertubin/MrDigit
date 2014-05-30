@@ -10,7 +10,7 @@
 
 @implementation WalkingDigit
 - (void)didLoadFromCCB {
-    self.physicsBody.collisionType = @"digit";
+    self.physicsBody.collisionType = @"walkingdigit";
 }
 
-@end
+@end    
