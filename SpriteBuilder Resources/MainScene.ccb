@@ -179,7 +179,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>onTut</string>
+							<string>onStore</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -224,7 +224,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>Tutorial</string>
+							<string>Store</string>
 							<false/>
 						</array>
 					</dict>
@@ -316,7 +316,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>18</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -418,8 +418,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>

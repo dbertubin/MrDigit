@@ -78,5 +78,15 @@
     
 }
 
+-(void)onStore{
+    CCScene *newScene = [CCBReader loadAsScene:@"Store"];
+    [[CCDirector sharedDirector] replaceScene:newScene];
+    
+    // access audio object
+    OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+    // play sound effect
+    [audio playEffect:@"woodblock_hit.mp3"];
+}
+
 
 @end

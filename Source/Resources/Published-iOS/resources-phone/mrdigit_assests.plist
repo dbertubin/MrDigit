@@ -33,7 +33,7 @@
 		<key>mrdigit_assests/burst.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{893, 80}, {67, 50}}</string>
+			<string>{{893, 157}, {67, 50}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -94,6 +94,19 @@
 			<string>{{0, 0}, {568, 27}}</string>
 			<key>sourceSize</key>
 			<string>{568, 27}</string>
+		</dict>
+		<key>mrdigit_assests/heart.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{893, 80}, {85, 75}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {85, 75}}</string>
+			<key>sourceSize</key>
+			<string>{85, 75}</string>
 		</dict>
 		<key>mrdigit_assests/ninja_standing2x.png</key>
 		<dict>

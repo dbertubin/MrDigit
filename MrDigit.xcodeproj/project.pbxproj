@@ -40,6 +40,7 @@
 		E530B001191C6B5F0030AC78 /* Gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = E530B000191C6B5F0030AC78 /* Gameplay.m */; };
 		E530B005191C6DEF0030AC78 /* woodblock_hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E530B004191C6DEF0030AC78 /* woodblock_hit.mp3 */; };
 		E530B007191C738B0030AC78 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E530B006191C738B0030AC78 /* background.mp3 */; };
+		E53D373C1944F6D80044E86B /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = E53D373B1944F6D80044E86B /* Store.m */; };
 		E549C2EF1932BBD8002F8641 /* NinjaBurst.m in Sources */ = {isa = PBXBuildFile; fileRef = E549C2EE1932BBD8002F8641 /* NinjaBurst.m */; };
 		E549C2F31933DD16002F8641 /* Credits.m in Sources */ = {isa = PBXBuildFile; fileRef = E549C2F21933DD16002F8641 /* Credits.m */; };
 		E569FBC1192C2910000C956E /* Burst.m in Sources */ = {isa = PBXBuildFile; fileRef = E569FBC0192C2910000C956E /* Burst.m */; };
@@ -112,6 +113,8 @@
 		E530B000191C6B5F0030AC78 /* Gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gameplay.m; path = Source/Gameplay.m; sourceTree = "<group>"; };
 		E530B004191C6DEF0030AC78 /* woodblock_hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = woodblock_hit.mp3; sourceTree = "<group>"; };
 		E530B006191C738B0030AC78 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
+		E53D373A1944F6D80044E86B /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Store.h; path = Source/Store.h; sourceTree = "<group>"; };
+		E53D373B1944F6D80044E86B /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Store.m; path = Source/Store.m; sourceTree = "<group>"; };
 		E549C2ED1932BBD8002F8641 /* NinjaBurst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NinjaBurst.h; path = Source/NinjaBurst.h; sourceTree = "<group>"; };
 		E549C2EE1932BBD8002F8641 /* NinjaBurst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NinjaBurst.m; path = Source/NinjaBurst.m; sourceTree = "<group>"; };
 		E549C2F11933DD16002F8641 /* Credits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credits.h; path = Source/Credits.h; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 		B737893C1807616C0076A88C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				E53D373A1944F6D80044E86B /* Store.h */,
+				E53D373B1944F6D80044E86B /* Store.m */,
 				E58F3CAC1936A1680011B842 /* Instructions.h */,
 				E58F3CAD1936A1680011B842 /* Instructions.m */,
 				B737893D1807617C0076A88C /* AppDelegate.h */,
@@ -396,6 +401,7 @@
 				E587B6ED192988F900713DF6 /* WalkingDigit.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				E58F3CA719342D7B0011B842 /* Coin.m in Sources */,
+				E53D373C1944F6D80044E86B /* Store.m in Sources */,
 				E530AFFE191C65B00030AC78 /* Ninja.m in Sources */,
 				E549C2F31933DD16002F8641 /* Credits.m in Sources */,
 				E569FBC1192C2910000C956E /* Burst.m in Sources */,

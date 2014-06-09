@@ -8,7 +8,7 @@
 
 #import "Gameplay.h"
 
-static const int MOVEBY = 50;
+static const int MOVEBY = 100;
 
 @implementation Gameplay{
     
@@ -37,6 +37,7 @@ static const int MOVEBY = 50;
     CCLabelTTF *_scoreLabelLabel;
     CCLabelTTF *_coinLabel;
     CCLabelTTF *_highScoreText;
+    CCLabelTTF *_livesText;
     
     CCNode *_burst;
     CCNode *_ninja;
@@ -67,9 +68,10 @@ static const int MOVEBY = 50;
     
     int _score;
     int _coins;
+    int _lives;
     CGFloat scrollSpeed;
     NSInteger _hiScore;
-    
+    BOOL _hit;
     
 }
 
@@ -79,14 +81,15 @@ static const int MOVEBY = 50;
     
     // set initail paused state
     isPaused =NO;
-
+    
     // instanciate score at 0
     _score = 0;
     
     // instanciate Prefs and grab Hi Score
     _prefs = [NSUserDefaults standardUserDefaults];
     _hiScore = [_prefs integerForKey:@"score"];
-    
+    _coins = [_prefs integerForKey:@"coins"];
+    _lives =  1; // [_prefs integerForKey:@"lives"];
     
     // Set menus to invisible
     _gameOverBg.visible = NO;
@@ -98,21 +101,21 @@ static const int MOVEBY = 50;
     //Set grounds in array to loop in update
     _grounds = @[_ground1, _ground2];
     
-
+    
     // Assign delegate
     _physicsNode.collisionDelegate = self;
- 
+    
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
     
     // visualize physics bodies & joints
-//    _physicsNode.debugDraw = TRUE;
+    //    _physicsNode.debugDraw = TRUE;
     
     // play sound background
     _audio= [OALSimpleAudio sharedInstance];
-    [_audio playBg:@"background.mp3" loop:true];
-
-
+//    [_audio playBg:@"background.mp3" loop:true];
+    
+    
     /************************************************************************************
      Set up Gestures
      ************************************************************************************/
@@ -164,7 +167,7 @@ static const int MOVEBY = 50;
         _gameOverLabel.visible = NO;
         _menuButton.visible= NO;
         _audio.paused = YES;
-
+        
         
     }
     else
@@ -188,14 +191,14 @@ static const int MOVEBY = 50;
 -(void)onBack{
     
     if (isPaused == YES) {
-                [[CCDirector sharedDirector] resume];
+        [[CCDirector sharedDirector] resume];
     }
-        CCScene *mainScene = [CCBReader loadAsScene:@"MainScene"];
-       
-        [[CCDirector sharedDirector] replaceScene:mainScene];
-        [_audio stopBg];
-        [_audio playEffect:@"woodblock_hit.mp3"];
-
+    CCScene *mainScene = [CCBReader loadAsScene:@"MainScene"];
+    
+    [[CCDirector sharedDirector] replaceScene:mainScene];
+    [_audio stopBg];
+    [_audio playEffect:@"woodblock_hit.mp3"];
+    
 }
 
 - (void)replay{
@@ -227,7 +230,7 @@ static const int MOVEBY = 50;
     //Gesture detect - swipe up/down , can be recognized direction
     if(swipe.direction == UISwipeGestureRecognizerDirectionUp)
     {
-         _destinationPoint=  CGPointMake(_walkingDigit.position.x , _walkingDigit.position.y + 100);
+        _destinationPoint=  CGPointMake(_walkingDigit.position.x , _walkingDigit.position.y + MOVEBY);
         [self startWalking];
         movedUp = true;
         movedDown = false;
@@ -248,7 +251,7 @@ static const int MOVEBY = 50;
     else if(swipe.direction == UISwipeGestureRecognizerDirectionLeft)
     {
         CCLOG(@"Left ");
-
+        
         _destinationPoint=  CGPointMake(_walkingDigit.position.x - MOVEBY, _walkingDigit.position.y + 0);
         // set BOOLS direction
         movedUp = false;
@@ -256,7 +259,7 @@ static const int MOVEBY = 50;
         movedLeft = true;
         movedRight = false;
     }
-
+    
     else if(swipe.direction == UISwipeGestureRecognizerDirectionRight)
     {
         CCLOG(@"Right");
@@ -282,6 +285,7 @@ static const int MOVEBY = 50;
     // Set Values for string labels
     _scoreLabel.string = [NSString stringWithFormat:@"%d", _score];
     _coinLabel.string = [NSString stringWithFormat:@"%d", _coins ];
+    _livesText.string = [NSString stringWithFormat:@"%d",_lives];
     
     
 #pragma mark Scrolling Background and Digit
@@ -308,10 +312,10 @@ static const int MOVEBY = 50;
     /********************************************************************************
      counter by frame increment to increate frequency of spawning
      *******************************************************************************/
-
+    
     _intensity++;
     
-
+    
     if (_intensity > 6000 && _intensity < 11999) {
         CCLOG(@"Intensity++");
         minDelay = 0.5;
@@ -354,21 +358,24 @@ static const int MOVEBY = 50;
         // nothing
     }
     
-    
+#pragma mark Point Detection
     /********************************************************************************
      Point Detection
      *******************************************************************************/
-
+    
     
     // Point Detection for ninjaburst to digit
     if (CGRectContainsPoint([_walkingDigit boundingBox], _ninjaBurst.position))
     {
-        [self gameOver];
-    }else {
+        
+        CCLOG(@"**********************POINT HIT*******************************");
+        if (_hit == NO) {
+            CCLOG(@"POINT HIT MADE IT INTO THE IF STATEMENT");
+            _hit = YES;
+            [self gameOver];
+            
+        }
     }
-    
-    
-
     
     /*****************************************************************************
      Managing Objects
@@ -409,7 +416,7 @@ static const int MOVEBY = 50;
         
         CCBAnimationManager* animationManager = _walkingDigit.userObject;
         [animationManager runAnimationsForSequenceNamed:@"Walking"];
-                movedUp = NO;
+        movedUp = NO;
         
     }
     
@@ -419,13 +426,15 @@ static const int MOVEBY = 50;
         CGPoint difValx;
         difValx.x = fabsf(_destinationPoint.x - _walkingDigit.position.x  );
         CGPoint newlocaton =  CGPointMake(_walkingDigit.position.x + (difValx.x*delta), _walkingDigit.position.y);
-        if (_walkingDigit.position.x < _destinationPoint.x) {
-            _walkingDigit.position = newlocaton;
-//            CCBAnimationManager* animationManager = _walkingDigit.userObject;
-            
-        }else if(_walkingDigit.position.x == _destinationPoint.x){
-            
-        }
+        CCActionMoveTo * moveTo = [CCActionMoveTo actionWithDuration:0.25f position:newlocaton];
+        [_walkingDigit runAction:moveTo];
+        //        if (_walkingDigit.position.x < _destinationPoint.x) {
+        //            _walkingDigit.position = newlocaton;
+        //            CCBAnimationManager* animationManager = _walkingDigit.userObject;
+        //
+        //        }else if(_walkingDigit.position.x == _destinationPoint.x){
+        //
+        //        }
     }
     
     
@@ -434,11 +443,13 @@ static const int MOVEBY = 50;
         CGPoint difValx;
         difValx.x = fabsf(_destinationPoint.x - _walkingDigit.position.x  );
         CGPoint newlocaton =  CGPointMake(_walkingDigit.position.x - (difValx.x*delta), _walkingDigit.position.y);
-        if (_walkingDigit.position.x > _destinationPoint.x) {
-            _walkingDigit.position = newlocaton;
-        }else if(_walkingDigit.position.x == _destinationPoint.x){
-            
-        }
+        CCActionMoveTo * moveTo = [CCActionMoveTo actionWithDuration:0.25f position:newlocaton];
+        [_walkingDigit runAction:moveTo];
+        //        if (_walkingDigit.position.x > _destinationPoint.x) {
+        //            _walkingDigit.position = newlocaton;
+        //        }else if(_walkingDigit.position.x == _destinationPoint.x){
+        //
+        //        }
     }
     
     
@@ -457,7 +468,7 @@ static const int MOVEBY = 50;
 #pragma mark - Add Stuff
 - (void)addNinja:(CCTime)dt {
     
- 
+    
     int sort = 0;
     sort ++;
     _ninja = (Ninja*)[CCBReader load:@"Ninja"];
@@ -465,18 +476,18 @@ static const int MOVEBY = 50;
     _ninja.zOrder= sort;
     
     _ninja.position = CGPointMake(self.contentSize.width + _ninja.contentSize.width/2, _walkingDigit.position.y);
-        
+    
     [_physicsNode addChild:_ninja];
     
     if (isPaused==NO) {
         [self scheduleOnce:@selector(launchNinjaBurst) delay:1];
     }
     
-
+    
     CCAction *actionMove = [CCActionMoveTo actionWithDuration:7 position:CGPointMake(-_ninja.contentSize.width/2 + 20, _walkingDigit.position.y)];
     CCAction *actionRemove = [CCActionRemove action];
     [_ninja runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
-
+    
 }
 
 - (void)addCoin:(CCTime)dt {
@@ -497,10 +508,10 @@ static const int MOVEBY = 50;
     CGPoint force = ccpMult(launchDirection, 50000);
     [_coin.physicsBody applyForce:force];
     
-//    CCAction *actionMove = [CCActionMoveTo actionWithDuration:4 position:CGPointMake(-30, 150)];
-//    CCAction *actionRemove = [CCActionRemove action];
-//    [_coin runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
-
+    //    CCAction *actionMove = [CCActionMoveTo actionWithDuration:4 position:CGPointMake(-30, 150)];
+    //    CCAction *actionRemove = [CCActionRemove action];
+    //    [_coin runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
+    
     
 }
 
@@ -523,7 +534,7 @@ static const int MOVEBY = 50;
         CGPoint force = ccpMult(launchDirection, 500000);
         [_burst.physicsBody applyForce:force];
     }
- 
+    
 }
 
 
@@ -548,10 +559,10 @@ static const int MOVEBY = 50;
         CCAction *actionRemove = [CCActionRemove action];
         [_ninjaBurst runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
         
-//        // manually create & apply a force to launch the burst
-//        CGPoint launchDirection = ccp(-1, 0);
-//        CGPoint force = ccpMult(launchDirection, 50000);
-//        [_ninjaBurst.physicsBody applyForce:force];
+        //        // manually create & apply a force to launch the burst
+        //        CGPoint launchDirection = ccp(-1, 0);
+        //        CGPoint force = ccpMult(launchDirection, 50000);
+        //        [_ninjaBurst.physicsBody applyForce:force];
     }
     
     
@@ -586,11 +597,20 @@ static const int MOVEBY = 50;
     // if energy is large enough, remove the ninja
     if (energy > 0.f)
     {
-        
-        _score++;
-        [self burstRemoved:nodeB];
-        [_audio playEffect:@"hit_sound.mp3"];
-        [self gameOver];
+//        
+//        _score++;
+//        [self burstRemoved:nodeB];
+//        [_audio playEffect:@"hit_sound.mp3"];
+//        
+//        if (_lives > 0)
+//        {
+//            _lives--;
+//        }
+//        else
+//        {
+//            [self gameOver];
+//        }
+//        
     }
 }
 
@@ -629,8 +649,8 @@ static const int MOVEBY = 50;
     {
         _coins++;
         [self coinRemoved:nodeA];
-//        [_audio playEffect:@"hit_sound.mp3"];
-
+        //        [_audio playEffect:@"hit_sound.mp3"];
+        
     }
 }
 
@@ -656,7 +676,7 @@ static const int MOVEBY = 50;
     CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"NinjaExplosion"];
     // clear effect , once it is completed
     explosion.autoRemoveOnFinish = TRUE;
-        // place the particle effect on the ninja position
+    // place the particle effect on the ninja position
     explosion.position = ninja.position;
     [ninja.parent addChild:explosion];
     
@@ -693,7 +713,7 @@ static const int MOVEBY = 50;
     
     
     [digit removeFromParent];
-
+    
 }
 
 
@@ -707,38 +727,55 @@ static const int MOVEBY = 50;
 
 
 -(void)gameOver{
-    _menuButton.visible= NO;
-    _mmButton.visible = YES;
-    _physicsNode.paused = YES;
-    _contentNode.userInteractionEnabled = FALSE;
-    scrollSpeed = 0;
-    _gameOverBg.visible = YES;
-    _scoreLabel.visible = NO;
-    _scoreLabelLabel.visible =NO;
-    _coinLabel.visible = NO;
-    
-    [[[CCDirector sharedDirector] view] removeGestureRecognizer:_swipeRight];
-    [[[CCDirector sharedDirector] view] removeGestureRecognizer:_swipeLeft];
-    [[[CCDirector sharedDirector] view] removeGestureRecognizer:_swipeUp];
-    [[[CCDirector sharedDirector] view] removeGestureRecognizer:_swipeDown];
-    [[[CCDirector sharedDirector] view] removeGestureRecognizer:_tap];
-    
-    
-    _prefs = [NSUserDefaults standardUserDefaults];
-    
-    if (_score > _hiScore) {
-        [_prefs setInteger:_score forKey:@"score"];
+       
+    CCLOG(@"****************************************** LIVES IS : %d",_lives);
+        if (_lives > 0)
+        {
+            
+            _lives--;
+            _hit = NO;
+            CCLOG(@"%i",_hit);
+            CCLOG(@"****************************************** LIVES IS : %d",_lives);
+            
+        }
+        else if(_lives ==0)
+        {
+        _menuButton.visible= NO;
+        _mmButton.visible = YES;
+        _physicsNode.paused = YES;
+        _contentNode.userInteractionEnabled = FALSE;
+        scrollSpeed = 0;
+        _gameOverBg.visible = YES;
+        _scoreLabel.visible = NO;
+        _scoreLabelLabel.visible =NO;
+        _coinLabel.visible = NO;
+        
+        [[[CCDirector sharedDirector] view] removeGestureRecognizer:_swipeRight];
+        [[[CCDirector sharedDirector] view] removeGestureRecognizer:_swipeLeft];
+        [[[CCDirector sharedDirector] view] removeGestureRecognizer:_swipeUp];
+        [[[CCDirector sharedDirector] view] removeGestureRecognizer:_swipeDown];
+        [[[CCDirector sharedDirector] view] removeGestureRecognizer:_tap];
+        
+        
+        _prefs = [NSUserDefaults standardUserDefaults];
+        
+        if (_score > _hiScore) {
+            [_prefs setInteger:_score forKey:@"score"];
+            
+            CCLOG(@"High Score");
+            _highScoreText.string = [NSString stringWithFormat:@"Congratulations you beat your high score!\nThe new one is %i", _score];
+            
+        } else
+        {
+            _highScoreText.string = [NSString stringWithFormat:@"Try to beat your high score of %li next time!", (long)_hiScore];
+        }
+        
+        [_prefs setInteger:_coins forKey:@"coins"];
+        [_prefs setInteger:_lives forKey:@"lives"];
         [_prefs synchronize];
-        CCLOG(@"High Score");
-        _highScoreText.string = [NSString stringWithFormat:@"Congratulations you beat your high score!\nThe new one is %i", _score];
-
-    } else
-    {
-        _highScoreText.string = [NSString stringWithFormat:@"Try to beat your high score of %li next time!", (long)_hiScore];
-    }
+        }
     
 }
-
 
 
 
