@@ -25,25 +25,25 @@
 		<key>children</key>
 		<array/>
 		<key>customClass</key>
-		<string>NinjaBurst</string>
+		<string>DarkNinja</string>
 		<key>displayName</key>
 		<string>CCSprite</string>
 		<key>memberVarAssignmentName</key>
-		<string>_ninjaBurst</string>
+		<string>_darkNinja</string>
 		<key>memberVarAssignmentType</key>
 		<integer>1</integer>
 		<key>physicsBody</key>
 		<dict>
 			<key>affectedByGravity</key>
-			<false/>
+			<true/>
 			<key>allowsRotation</key>
 			<false/>
 			<key>bodyShape</key>
-			<integer>1</integer>
+			<integer>0</integer>
 			<key>cornerRadius</key>
-			<real>34</real>
+			<real>0.0</real>
 			<key>density</key>
-			<real>1</real>
+			<real>10</real>
 			<key>dynamic</key>
 			<true/>
 			<key>elasticity</key>
@@ -53,8 +53,20 @@
 			<key>points</key>
 			<array>
 				<array>
-					<real>33.5</real>
-					<real>34</real>
+					<real>0.0</real>
+					<real>0.0</real>
+				</array>
+				<array>
+					<real>19</real>
+					<real>0.0</real>
+				</array>
+				<array>
+					<real>19</real>
+					<real>45</real>
+				</array>
+				<array>
+					<real>0.0</real>
+					<real>45</real>
 				</array>
 			</array>
 		</dict>
@@ -114,7 +126,7 @@
 				<key>value</key>
 				<array>
 					<string></string>
-					<string>mrdigit_assests/burst.png</string>
+					<string>mrdigit_assests/ninja_standing2x.png</string>
 				</array>
 			</dict>
 			<dict>
@@ -124,21 +136,21 @@
 				<string>Color3</string>
 				<key>value</key>
 				<array>
-					<real>0.32746866345405579</real>
-					<real>0.33965808153152466</real>
-					<real>0.83023208379745483</real>
+					<real>1</real>
+					<real>1</real>
+					<real>1</real>
 					<real>1</real>
 				</array>
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>flip</string>
+				<string>blendFunc</string>
 				<key>type</key>
-				<string>Flip</string>
+				<string>Blendmode</string>
 				<key>value</key>
 				<array>
-					<true/>
-					<false/>
+					<integer>776</integer>
+					<integer>771</integer>
 				</array>
 			</dict>
 		</array>
@@ -203,7 +215,7 @@
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
-			<real>128</real>
+			<real>187.05618286132812</real>
 			<key>sequenceId</key>
 			<integer>0</integer>
 			<key>soundChannel</key>

@@ -12,6 +12,8 @@
 
 - (void)didLoadFromCCB {
     self.physicsBody.collisionType = @"coin";
+    self.physicsBody.collisionGroup = @"coins";
+    self.physicsBody.collisionMask = [[NSArray alloc]initWithObjects:@"burst", nil];
 }
 
 

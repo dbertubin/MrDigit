@@ -13,8 +13,10 @@
     NSUserDefaults * _prefs;
     CCLabelTTF *_coinText;
     CCLabelTTF *_livesText;
+    CCLabelTTF *_darkNinjaBurstText;
     int _coins;
     int _lives;
+    int _darkNinjaBurstCount;
     
 }
 
@@ -22,7 +24,7 @@
      _prefs = [NSUserDefaults standardUserDefaults];
     _coins = [_prefs integerForKey:@"coins"];
     _lives = [_prefs integerForKey:@"lives"];
-
+    _darkNinjaBurstCount = [_prefs integerForKey:@"darkninjaburst"];
 }
 
 - (void)showAlert {
@@ -47,6 +49,23 @@
     
 }
 
+-(void)onBuyDNB{
+    
+    if (_coins >= 10) {
+        int newCount = _coins - 10;
+        [_prefs setInteger:(_darkNinjaBurstCount+5) forKey:@"darkninjaburst"];
+        [_prefs setInteger:newCount forKey:@"coins"];
+        [_prefs synchronize];
+        _coins = newCount;
+        _darkNinjaBurstCount = _darkNinjaBurstCount + 5;
+    } else {
+        [self showAlert];
+        
+    }
+    
+    
+}
+
 
 -(void)onBack{
     CCScene *newScene = [CCBReader loadAsScene:@"MainScene"];
@@ -61,6 +80,7 @@
 - (void)update:(CCTime)delta{
     _coinText.string = [NSString stringWithFormat:@"%d", _coins];
     _livesText.string = [NSString stringWithFormat:@"%d", _lives];
+    _darkNinjaBurstText.string = [NSString stringWithFormat:@"%d" ,_darkNinjaBurstCount];
 }
 
 @end

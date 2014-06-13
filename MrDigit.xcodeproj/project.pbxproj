@@ -43,6 +43,7 @@
 		E53D373C1944F6D80044E86B /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = E53D373B1944F6D80044E86B /* Store.m */; };
 		E549C2EF1932BBD8002F8641 /* NinjaBurst.m in Sources */ = {isa = PBXBuildFile; fileRef = E549C2EE1932BBD8002F8641 /* NinjaBurst.m */; };
 		E549C2F31933DD16002F8641 /* Credits.m in Sources */ = {isa = PBXBuildFile; fileRef = E549C2F21933DD16002F8641 /* Credits.m */; };
+		E5568E701947D1A30062FAD4 /* DarkNinja.m in Sources */ = {isa = PBXBuildFile; fileRef = E5568E6F1947D1A30062FAD4 /* DarkNinja.m */; };
 		E569FBC1192C2910000C956E /* Burst.m in Sources */ = {isa = PBXBuildFile; fileRef = E569FBC0192C2910000C956E /* Burst.m */; };
 		E587B6ED192988F900713DF6 /* WalkingDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = E587B6EC192988F900713DF6 /* WalkingDigit.m */; };
 		E58F3CA719342D7B0011B842 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = E58F3CA619342D7B0011B842 /* Coin.m */; };
@@ -52,6 +53,7 @@
 		E596A8D71925AE1C00048D3B /* fire_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E596A8D61925AE1C00048D3B /* fire_sound.mp3 */; };
 		E596A8D91925B45E00048D3B /* P2E_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E596A8D81925B45E00048D3B /* P2E_sound.mp3 */; };
 		E596A8DC1925C71700048D3B /* Mouse.m in Sources */ = {isa = PBXBuildFile; fileRef = E596A8DB1925C71700048D3B /* Mouse.m */; };
+		E5CCAFF8194963530063A124 /* DarkNinjaBurst.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CCAFF7194963530063A124 /* DarkNinjaBurst.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +121,8 @@
 		E549C2EE1932BBD8002F8641 /* NinjaBurst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NinjaBurst.m; path = Source/NinjaBurst.m; sourceTree = "<group>"; };
 		E549C2F11933DD16002F8641 /* Credits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credits.h; path = Source/Credits.h; sourceTree = "<group>"; };
 		E549C2F21933DD16002F8641 /* Credits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credits.m; path = Source/Credits.m; sourceTree = "<group>"; };
+		E5568E6E1947D1A30062FAD4 /* DarkNinja.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DarkNinja.h; path = Source/DarkNinja.h; sourceTree = "<group>"; };
+		E5568E6F1947D1A30062FAD4 /* DarkNinja.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DarkNinja.m; path = Source/DarkNinja.m; sourceTree = "<group>"; };
 		E569FBBF192C2910000C956E /* Burst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Burst.h; path = Source/Burst.h; sourceTree = "<group>"; };
 		E569FBC0192C2910000C956E /* Burst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Burst.m; path = Source/Burst.m; sourceTree = "<group>"; };
 		E587B6EB192988F900713DF6 /* WalkingDigit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WalkingDigit.h; path = Source/WalkingDigit.h; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 		E596A8D81925B45E00048D3B /* P2E_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = P2E_sound.mp3; sourceTree = "<group>"; };
 		E596A8DA1925C71700048D3B /* Mouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mouse.h; path = Source/Mouse.h; sourceTree = "<group>"; };
 		E596A8DB1925C71700048D3B /* Mouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mouse.m; path = Source/Mouse.m; sourceTree = "<group>"; };
+		E5CCAFF6194963530063A124 /* DarkNinjaBurst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DarkNinjaBurst.h; path = Source/DarkNinjaBurst.h; sourceTree = "<group>"; };
+		E5CCAFF7194963530063A124 /* DarkNinjaBurst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DarkNinjaBurst.m; path = Source/DarkNinjaBurst.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +184,8 @@
 				B7378993180767190076A88C /* MainScene.m */,
 				E530AFFF191C6B5F0030AC78 /* Gameplay.h */,
 				E530B000191C6B5F0030AC78 /* Gameplay.m */,
+				E5CCAFF6194963530063A124 /* DarkNinjaBurst.h */,
+				E5CCAFF7194963530063A124 /* DarkNinjaBurst.m */,
 				E58F3CAF1936EAF00011B842 /* Tutorial.h */,
 				E58F3CB01936EAF00011B842 /* Tutorial.m */,
 				E58F3CA519342D7B0011B842 /* Coin.h */,
@@ -196,6 +204,8 @@
 				E530AFFD191C65B00030AC78 /* Ninja.m */,
 				E569FBBF192C2910000C956E /* Burst.h */,
 				E569FBC0192C2910000C956E /* Burst.m */,
+				E5568E6E1947D1A30062FAD4 /* DarkNinja.h */,
+				E5568E6F1947D1A30062FAD4 /* DarkNinja.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -399,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E587B6ED192988F900713DF6 /* WalkingDigit.m in Sources */,
+				E5CCAFF8194963530063A124 /* DarkNinjaBurst.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				E58F3CA719342D7B0011B842 /* Coin.m in Sources */,
 				E53D373C1944F6D80044E86B /* Store.m in Sources */,
@@ -406,6 +417,7 @@
 				E549C2F31933DD16002F8641 /* Credits.m in Sources */,
 				E569FBC1192C2910000C956E /* Burst.m in Sources */,
 				E596A8DC1925C71700048D3B /* Mouse.m in Sources */,
+				E5568E701947D1A30062FAD4 /* DarkNinja.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				E58F3CAE1936A1680011B842 /* Instructions.m in Sources */,

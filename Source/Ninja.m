@@ -12,6 +12,8 @@
 
 - (void)didLoadFromCCB {
     self.physicsBody.collisionType = @"ninja";
+    self.physicsBody.collisionGroup = @"ninjaToNinjaBurst";
+    self.physicsBody.collisionMask = [[NSArray alloc]initWithObjects:@"burst", nil];
 }
 
 @end

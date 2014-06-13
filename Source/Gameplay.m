@@ -32,17 +32,22 @@ static const int MOVEBY = 100;
     CCButton *_mmButton;
     CCButton *_menuButton;
     CCButton *_replayButton;
+    CCButton *_darkNinjaBurstButton;
     CCLabelTTF *_gameOverLabel;
     CCLabelTTF *_scoreLabel;
     CCLabelTTF *_scoreLabelLabel;
     CCLabelTTF *_coinLabel;
     CCLabelTTF *_highScoreText;
     CCLabelTTF *_livesText;
+    CCLabelTTF *_darkNinjaBurstLabel;
+    
     
     CCNode *_burst;
     CCNode *_ninja;
+    CCNode *_darkNinja;
     CCNode *_coin;
     CCNode *_ninjaBurst;
+    CCNode *_darkNinjaBurst;
     NSUserDefaults * _prefs;
     
     
@@ -69,10 +74,11 @@ static const int MOVEBY = 100;
     int _score;
     int _coins;
     int _lives;
+    int _darkNinjaBurstCount;
     CGFloat scrollSpeed;
     NSInteger _hiScore;
     BOOL _hit;
-    
+    NSMutableArray *_nbursts;
 }
 
 
@@ -89,7 +95,11 @@ static const int MOVEBY = 100;
     _prefs = [NSUserDefaults standardUserDefaults];
     _hiScore = [_prefs integerForKey:@"score"];
     _coins = [_prefs integerForKey:@"coins"];
-    _lives =  1; // [_prefs integerForKey:@"lives"];
+    _lives = [_prefs integerForKey:@"lives"];
+    _darkNinjaBurstCount = [_prefs integerForKey:@"darkninjaburst"];
+
+    
+
     
     // Set menus to invisible
     _gameOverBg.visible = NO;
@@ -105,6 +115,14 @@ static const int MOVEBY = 100;
     // Assign delegate
     _physicsNode.collisionDelegate = self;
     
+    
+    _walkingDigit = (WalkingDigit*)[CCBReader load:@"WalkingDigit"];
+    [_physicsNode addChild:_walkingDigit];
+    _walkingDigit.physicsBody.collisionType =@"walkingdigit";
+    _walkingDigit.position = ccp(25, 45);
+    _walkingDigit.scale = 2;
+    
+    
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
     
@@ -113,7 +131,7 @@ static const int MOVEBY = 100;
     
     // play sound background
     _audio= [OALSimpleAudio sharedInstance];
-//    [_audio playBg:@"background.mp3" loop:true];
+    //    [_audio playBg:@"background.mp3" loop:true];
     
     
     /************************************************************************************
@@ -286,9 +304,16 @@ static const int MOVEBY = 100;
     _scoreLabel.string = [NSString stringWithFormat:@"%d", _score];
     _coinLabel.string = [NSString stringWithFormat:@"%d", _coins ];
     _livesText.string = [NSString stringWithFormat:@"%d",_lives];
+    _darkNinjaBurstLabel.string = [NSString stringWithFormat:@"%d",_darkNinjaBurstCount];
+    
+
+    if (_darkNinjaBurstCount<1) {
+        _darkNinjaBurstButton.visible = NO;
+        _darkNinjaBurstLabel.visible = NO;
+    }
     
     
-#pragma mark Scrolling Background and Digit
+#pragma mark
     /********************************************************************************
      Scrolling Background and Digit
      *******************************************************************************/
@@ -337,6 +362,8 @@ static const int MOVEBY = 100;
     
     if (_intensity < 600) {
         CCLOG(@"Intensity++");
+        
+
         minDelay = 0.5;
         maxDelay = 3.0;
     }
@@ -353,29 +380,15 @@ static const int MOVEBY = 100;
         
         [self scheduleOnce:@selector(addNinja:) delay:randomDelta];
         [self scheduleOnce:@selector(addCoin:) delay:randomDelta];
+        if (_intensity > 300) {
+            [self scheduleOnce:@selector(addDarkNinja:) delay:randomDelta*5];
+        }
         
     } else {
         // nothing
     }
     
-#pragma mark Point Detection
-    /********************************************************************************
-     Point Detection
-     *******************************************************************************/
-    
-    
-    // Point Detection for ninjaburst to digit
-    if (CGRectContainsPoint([_walkingDigit boundingBox], _ninjaBurst.position))
-    {
-        
-        CCLOG(@"**********************POINT HIT*******************************");
-        if (_hit == NO) {
-            CCLOG(@"POINT HIT MADE IT INTO THE IF STATEMENT");
-            _hit = YES;
-            [self gameOver];
-            
-        }
-    }
+
     
     /*****************************************************************************
      Managing Objects
@@ -411,7 +424,7 @@ static const int MOVEBY = 100;
         CGPoint difValx;
         difValx.y = fabsf(_destinationPoint.y - _walkingDigit.position.y  );
         CGPoint newlocaton =  CGPointMake(_walkingDigit.position.x , _destinationPoint.y);
-        CCActionMoveTo * moveTo = [CCActionMoveTo actionWithDuration:0.25f position:newlocaton];
+        CCActionMoveTo * moveTo = [CCActionMoveTo actionWithDuration:0.20f position:newlocaton];
         [_walkingDigit runAction:moveTo];
         
         CCBAnimationManager* animationManager = _walkingDigit.userObject;
@@ -426,15 +439,9 @@ static const int MOVEBY = 100;
         CGPoint difValx;
         difValx.x = fabsf(_destinationPoint.x - _walkingDigit.position.x  );
         CGPoint newlocaton =  CGPointMake(_walkingDigit.position.x + (difValx.x*delta), _walkingDigit.position.y);
-        CCActionMoveTo * moveTo = [CCActionMoveTo actionWithDuration:0.25f position:newlocaton];
+        CCActionMoveTo * moveTo = [CCActionMoveTo actionWithDuration:0.10f position:newlocaton];
         [_walkingDigit runAction:moveTo];
-        //        if (_walkingDigit.position.x < _destinationPoint.x) {
-        //            _walkingDigit.position = newlocaton;
-        //            CCBAnimationManager* animationManager = _walkingDigit.userObject;
-        //
-        //        }else if(_walkingDigit.position.x == _destinationPoint.x){
-        //
-        //        }
+
     }
     
     
@@ -443,7 +450,7 @@ static const int MOVEBY = 100;
         CGPoint difValx;
         difValx.x = fabsf(_destinationPoint.x - _walkingDigit.position.x  );
         CGPoint newlocaton =  CGPointMake(_walkingDigit.position.x - (difValx.x*delta), _walkingDigit.position.y);
-        CCActionMoveTo * moveTo = [CCActionMoveTo actionWithDuration:0.25f position:newlocaton];
+        CCActionMoveTo * moveTo = [CCActionMoveTo actionWithDuration:0.10f position:newlocaton];
         [_walkingDigit runAction:moveTo];
         //        if (_walkingDigit.position.x > _destinationPoint.x) {
         //            _walkingDigit.position = newlocaton;
@@ -474,13 +481,15 @@ static const int MOVEBY = 100;
     _ninja = (Ninja*)[CCBReader load:@"Ninja"];
     _ninja.scale =2.0f;
     _ninja.zOrder= sort;
-    
+    _ninja.physicsBody.collisionGroup = @"darkNinjaBurstToNinja";
+    _ninja.physicsBody.collisionGroup = @"ninjaToNinjaBurst";
+    _ninja.physicsBody.collisionMask = [[NSArray alloc]initWithObjects:@"burst", nil];
     _ninja.position = CGPointMake(self.contentSize.width + _ninja.contentSize.width/2, _walkingDigit.position.y);
     
     [_physicsNode addChild:_ninja];
     
     if (isPaused==NO) {
-        [self scheduleOnce:@selector(launchNinjaBurst) delay:1];
+        [self scheduleOnce:@selector(launchNinjaBurst) delay:.5f];
     }
     
     
@@ -490,6 +499,29 @@ static const int MOVEBY = 100;
     
 }
 
+- (void)addDarkNinja:(CCTime)dt {
+    
+    
+    int sort = 0;
+    sort ++;
+    _darkNinja = (Ninja*)[CCBReader load:@"DarkNinja"];
+    _darkNinja.physicsBody.collisionType = @"darkninja";
+    _darkNinja.physicsBody.collisionGroup = @"groupb";
+    _darkNinja.physicsBody.collisionGroup = @"group";
+    _darkNinja.scale =2.0f;
+    _darkNinja.zOrder= sort;
+    _darkNinja.position = CGPointMake(self.contentSize.width + _darkNinja.contentSize.width/2, _walkingDigit.position.y);
+    
+    [_physicsNode addChild:_darkNinja];
+    
+
+    CCAction *actionMove = [CCActionMoveTo actionWithDuration:7 position:CGPointMake(-_darkNinja.contentSize.width/2 + 20, _walkingDigit.position.y)];
+    CCAction *actionRemove = [CCActionRemove action];
+    [_darkNinja runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
+    
+}
+
+
 - (void)addCoin:(CCTime)dt {
     
     
@@ -498,6 +530,7 @@ static const int MOVEBY = 100;
     _coin = (Coin*)[CCBReader load:@"Coin"];
     _coin.scale =.2f;
     _coin.zOrder= sort;
+    _coin.physicsBody.collisionMask = [[NSArray alloc]initWithObjects:@"burst", nil];
     
     _coin.position = CGPointMake(self.contentSize.width + _coin.contentSize.width/2, 150);
     
@@ -507,10 +540,6 @@ static const int MOVEBY = 100;
     CGPoint launchDirection = ccp(-1, 0);
     CGPoint force = ccpMult(launchDirection, 50000);
     [_coin.physicsBody applyForce:force];
-    
-    //    CCAction *actionMove = [CCActionMoveTo actionWithDuration:4 position:CGPointMake(-30, 150)];
-    //    CCAction *actionRemove = [CCActionRemove action];
-    //    [_coin runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
     
     
 }
@@ -523,7 +552,9 @@ static const int MOVEBY = 100;
         _burst = [CCBReader load:@"Burst"];
         _burst.scale = .5f;
         CCLOG(@"loads the Burst.ccb");
-        
+//        _burst.physicsBody.collisionGroup = @"burstToNinjaBurst";
+        _burst.physicsBody.collisionGroup = @"groupb";
+        _burst.physicsBody.collisionGroup = @"group";
         _burst.position = ccpAdd(_walkingDigit.position, ccp(35 , 10));
         
         [_physicsNode addChild:_burst];
@@ -537,6 +568,37 @@ static const int MOVEBY = 100;
     
 }
 
+- (void)launchDarkNinjaBurst{
+    
+    if (isPaused== NO) {
+        if (_darkNinjaBurstCount > 0)
+        {
+            _darkNinjaBurstCount--;
+            // loads the Penguin.ccb we have set up in Spritebuilder
+            _darkNinjaBurst = [CCBReader load:@"DarkNinjaBurst"];
+            _darkNinjaBurst.physicsBody.collisionType = @"darkninjaburst";
+            _darkNinjaBurst.physicsBody.collisionGroup = @"darkNinjaBurstToNinja";
+            _darkNinjaBurst.scale = .5f;
+            _darkNinjaBurst.position = ccpAdd(_walkingDigit.position, ccp(35 , 10));
+            
+            [_physicsNode addChild:_darkNinjaBurst];
+            [_audio playEffect:@"fire_sound.mp3"];
+            
+            // manually create & apply a force to launch the burst
+            CGPoint launchDirection = ccp(1, 0                  );
+            CGPoint force = ccpMult(launchDirection, 500000);
+            [_darkNinjaBurst.physicsBody applyForce:force];
+            
+        }
+        else
+        {
+            _darkNinjaBurstButton.visible = NO;
+            _darkNinjaBurstLabel.visible = NO;
+        }
+    }
+    
+}
+
 
 - (void)launchNinjaBurst{
     
@@ -545,24 +607,20 @@ static const int MOVEBY = 100;
     if (_ninja.position.x < _contentNode.contentSize.width) {
         // loads the Penguin.ccb we have set up in Spritebuilder
         _ninjaBurst = [CCBReader load:@"NinjaBurst"];
+        _ninjaBurst.physicsBody.collisionGroup = @"ninjaToNinjaBurst";
+        _ninjaBurst.physicsBody.collisionGroup = @"group";
+        
         _ninjaBurst.scale = .5f;
-        _ninjaBurst.zOrder = sort;
-        CCLOG(@"loads the Burst.ccb");
-        
         _ninjaBurst.position = ccpAdd(_ninja.position, ccp(-35 , 20));
-        
         [_physicsNode addChild:_ninjaBurst];
         [_audio playEffect:@"fire_sound.mp3"];
         
         
-        CCAction *actionMove = [CCActionMoveTo actionWithDuration:2 position:CGPointMake(-_ninja.contentSize.width/2 + 20, _walkingDigit.position.y)];
+        CCAction *actionMove = [CCActionMoveTo actionWithDuration:2.25f position:CGPointMake(-_ninja.contentSize.width/2 + 20, _walkingDigit.position.y)];
         CCAction *actionRemove = [CCActionRemove action];
         [_ninjaBurst runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
         
-        //        // manually create & apply a force to launch the burst
-        //        CGPoint launchDirection = ccp(-1, 0);
-        //        CGPoint force = ccpMult(launchDirection, 50000);
-        //        [_ninjaBurst.physicsBody applyForce:force];
+
     }
     
     
@@ -576,95 +634,67 @@ static const int MOVEBY = 100;
 
 -(void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair ninja:(CCNode *)nodeA burst:(CCNode *)nodeB
 {
-    float energy = [pair totalKineticEnergy];
-    CCLOG(@"This fired");
-    // if energy is large enough, remove the ninja
-    if (energy > 0.f)
-    {
-        
-        _score++;
-        [self ninjaRemoved:nodeA];
-        [self burstRemoved:nodeB];
-        [_audio playEffect:@"hit_sound.mp3"];
-        
-    }
+    
+    _score++;
+    [self ninjaRemoved:nodeA];
+    [self burstRemoved:nodeB];
+    [_audio playEffect:@"hit_sound.mp3"];
+    
+}
+
+
+-(void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair darkninja:(CCNode *)nodeA darkninjaburst:(CCNode *)nodeB
+{
+    
+    _score = _score + 5;
+    [self ninjaRemoved:nodeA];
+    [self burstRemoved:nodeB];
+    [_audio playEffect:@"hit_sound.mp3"];
+    
 }
 
 -(void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair walkingdigit:(CCNode *)nodeA ninjaburst:(CCNode *)nodeB
 {
-    float energy = [pair totalKineticEnergy];
-    CCLOG(@"This fired");
-    // if energy is large enough, remove the ninja
-    if (energy > 0.f)
-    {
-//        
-//        _score++;
-//        [self burstRemoved:nodeB];
-//        [_audio playEffect:@"hit_sound.mp3"];
-//        
-//        if (_lives > 0)
-//        {
-//            _lives--;
-//        }
-//        else
-//        {
-//            [self gameOver];
-//        }
-//        
-    }
+    
+    [self burstRemoved:nodeB];
+    [self gameOver];
+    
 }
 
--(void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair burst:(CCNode *)nodeA ninjaburst:(CCNode *)nodeB
-{
-    float energy = [pair totalKineticEnergy];
-    CCLOG(@"This fired");
-    // if energy is large enough, remove the ninja
-    if (energy > 0.f)
-    {
-        
-        _score++;
-        [self burstRemoved:nodeB];
-        [self burstRemoved:nodeA];
-    }
-}
 
 -(void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair walkingdigit:(CCNode *)nodeA ninja:(CCNode *)nodeB
 {
-    float energy = [pair totalKineticEnergy];
-    // if energy is large enough, remove the ninja
-    if (energy > 0.0f)
-    {
-        [self ninjaRemoved:nodeB];
-        [self digitRemoved:nodeA];
-        //        [_audio playEffect:@"hit_sound.mp3"];
-        [self gameOver];
-    }
+    
+    [self ninjaRemoved:nodeB];
+    //        [self digitRemoved:nodeA];
+    //        [_audio playEffect:@"hit_sound.mp3"];
+    [self gameOver];
+    
+}
+
+-(void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair walkingdigit:(CCNode *)nodeA darkninja:(CCNode *)nodeB
+{
+    
+    [self gameOver];
+    
 }
 
 -(void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair coin:(CCNode *)nodeA walkingdigit:(CCNode *)nodeB
 {
-    float energy = [pair totalKineticEnergy];
-    // if energy is large enough, remove the ninja
-    if (energy > 0.0f)
-    {
-        _coins++;
-        [self coinRemoved:nodeA];
-        //        [_audio playEffect:@"hit_sound.mp3"];
-        
-    }
+    _coins++;
+    [self coinRemoved:nodeA];
+    //        [_audio playEffect:@"hit_sound.mp3"];
+    
+    
 }
 
 -(void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair coin:(CCNode *)nodeA burst:(CCNode *)nodeB
 {
-    float energy = [pair totalKineticEnergy];
-    // if energy is large enough, remove the ninja
-    if (energy > 0.0f)
-    {
-        [self coinRemoved:nodeA];
-        [self burstRemoved:nodeB];
-        //        [_audio playEffect:@"hit_sound.mp3"];
-        
-    }
+    
+    [self coinRemoved:nodeA];
+    [self burstRemoved:nodeB];
+    //        [_audio playEffect:@"hit_sound.mp3"];
+    
 }
 
 
@@ -679,7 +709,7 @@ static const int MOVEBY = 100;
     // place the particle effect on the ninja position
     explosion.position = ninja.position;
     [ninja.parent addChild:explosion];
-    
+    [self unschedule:@selector(launchNinjaBurst)];
     // finally, remove the  ninja
     [ninja removeFromParent];
 }
@@ -727,19 +757,18 @@ static const int MOVEBY = 100;
 
 
 -(void)gameOver{
-       
+    
     CCLOG(@"****************************************** LIVES IS : %d",_lives);
-        if (_lives > 0)
-        {
-            
-            _lives--;
-            _hit = NO;
-            CCLOG(@"%i",_hit);
-            CCLOG(@"****************************************** LIVES IS : %d",_lives);
-            
-        }
-        else if(_lives ==0)
-        {
+    if (_lives > 0)
+    {
+        _lives--;
+        
+        CCLOG(@"%i",_hit);
+        CCLOG(@"****************************************** LIVES IS : %d",_lives);
+        
+    }
+    else if(_lives ==0)
+    {
         _menuButton.visible= NO;
         _mmButton.visible = YES;
         _physicsNode.paused = YES;
@@ -772,8 +801,9 @@ static const int MOVEBY = 100;
         
         [_prefs setInteger:_coins forKey:@"coins"];
         [_prefs setInteger:_lives forKey:@"lives"];
+        [_prefs setInteger:_darkNinjaBurstCount forKey:@"darkninjaburst"];
         [_prefs synchronize];
-        }
+    }
     
 }
 

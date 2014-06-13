@@ -12,6 +12,8 @@
 
 - (void)didLoadFromCCB {
     self.physicsBody.collisionType = @"burst";
+//    self.physicsBody.collisionGroup = @"burstToDarkNinja";
+    self.physicsBody.collisionGroup =@"1";
 }
 
 

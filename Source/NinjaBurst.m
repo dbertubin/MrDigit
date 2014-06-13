@@ -10,9 +10,11 @@
 
 @implementation NinjaBurst
 
-//- (void)didLoadFromCCB {
-//    self.physicsBody.collisionType = @"ninjaburst";
-//}
+- (void)didLoadFromCCB {
+    self.physicsBody.collisionType = @"ninjaburst";
+
+
+}
 
 
 @end
