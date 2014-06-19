@@ -7,7 +7,6 @@
 //
 
 #import "CCNode.h"
-#import "Digit.h"
 #import "Burst.h"
 #import "Ninja.h"
 #import "WalkingDigit.h"

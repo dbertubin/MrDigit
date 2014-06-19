@@ -70,15 +70,35 @@ static const int MOVEBY = 100;
     BOOL movedUp;
     BOOL movedDown;
     BOOL isPaused;
+    BOOL _hit;
     
     int _score;
     int _coins;
     int _lives;
     int _darkNinjaBurstCount;
+    
     CGFloat scrollSpeed;
     NSInteger _hiScore;
-    BOOL _hit;
     NSMutableArray *_nbursts;
+    
+    // Values to Feed Leaderboard
+    NSInteger _firstScoreVal;
+    NSInteger _secondScoreVal;
+    NSInteger _thirdScoreVal;
+    NSInteger _fourthScoreVal;
+    NSInteger _fifthScoreVal;
+    
+    NSInteger _firstScoreValP;
+    NSInteger _secondScoreValP;
+    NSInteger _thirdScoreValP;
+    NSInteger _fourthScoreValP;
+    NSInteger _fifthScoreValP;
+    
+    
+    NSMutableArray *_scoreArray;
+    UITextField *_userInitials;
+    
+    int _tag;
 }
 
 
@@ -93,13 +113,23 @@ static const int MOVEBY = 100;
     
     // instanciate Prefs and grab Hi Score
     _prefs = [NSUserDefaults standardUserDefaults];
+    
+    
+    // Set values for gameplay vars
     _hiScore = [_prefs integerForKey:@"score"];
     _coins = [_prefs integerForKey:@"coins"];
     _lives = [_prefs integerForKey:@"lives"];
     _darkNinjaBurstCount = [_prefs integerForKey:@"darkninjaburst"];
 
+    _firstScoreVal = [_prefs integerForKey:@"firstScore"];
+    _secondScoreVal = [_prefs integerForKey:@"secondScore"];
+    _thirdScoreVal = [_prefs integerForKey:@"thirdScore"];
+    _fourthScoreVal = [_prefs integerForKey:@"fourthScore"];
+    _fifthScoreVal = [_prefs integerForKey:@"fifthScore"];
     
-
+    _scoreArray = [[NSMutableArray alloc]initWithObjects:[NSNumber numberWithInt:_firstScoreVal],[NSNumber numberWithInt:_secondScoreVal],[NSNumber numberWithInt:_thirdScoreVal],[NSNumber numberWithInt:_fourthScoreVal],[NSNumber numberWithInt:_fifthScoreVal], nil];
+    
+    
     
     // Set menus to invisible
     _gameOverBg.visible = NO;
@@ -758,13 +788,9 @@ static const int MOVEBY = 100;
 
 -(void)gameOver{
     
-    CCLOG(@"****************************************** LIVES IS : %d",_lives);
     if (_lives > 0)
     {
         _lives--;
-        
-        CCLOG(@"%i",_hit);
-        CCLOG(@"****************************************** LIVES IS : %d",_lives);
         
     }
     else if(_lives ==0)
@@ -779,6 +805,8 @@ static const int MOVEBY = 100;
         _scoreLabelLabel.visible =NO;
         _coinLabel.visible = NO;
         
+        
+        // remove touch thingys
         [[[CCDirector sharedDirector] view] removeGestureRecognizer:_swipeRight];
         [[[CCDirector sharedDirector] view] removeGestureRecognizer:_swipeLeft];
         [[[CCDirector sharedDirector] view] removeGestureRecognizer:_swipeUp];
@@ -786,18 +814,74 @@ static const int MOVEBY = 100;
         [[[CCDirector sharedDirector] view] removeGestureRecognizer:_tap];
         
         
+        
+        // clean up and sets scores
         _prefs = [NSUserDefaults standardUserDefaults];
         
-        if (_score > _hiScore) {
-            [_prefs setInteger:_score forKey:@"score"];
+        
+        if (_score > _firstScoreVal) {
             
-            CCLOG(@"High Score");
+            _tag= 1;
+            
+            // BUMP THE VALUES DOWN THE CHAIN
+
+            _thirdScoreVal =_secondScoreVal;
+            _secondScoreVal = _firstScoreVal;
+            _firstScoreVal = _score;
+            
+            CCLOG(@"%i",_secondScoreVal);
+            CCLOG(@"%i",_thirdScoreVal);
+
+            
+            
             _highScoreText.string = [NSString stringWithFormat:@"Congratulations you beat your high score!\nThe new one is %i", _score];
+            [_prefs setInteger:_firstScoreVal forKey:@"firstScore"];
+            [_prefs setInteger:_secondScoreVal forKey:@"secondScore"];
+            [_prefs setInteger:_thirdScoreVal forKey:@"thirdScore"];
+
             
-        } else
-        {
-            _highScoreText.string = [NSString stringWithFormat:@"Try to beat your high score of %li next time!", (long)_hiScore];
+            [self newScoreAlert];
+//            [_prefs setObject:_userInitials.text forKey:@"first"];
+            CCLOG(@"%@",_userInitials.text);
         }
+        
+        
+        if (_score < _firstScoreVal &&  _score > _secondScoreVal){
+            
+            _tag = 2;
+            _thirdScoreVal =_secondScoreVal;
+            _secondScoreVal = _score;
+            
+            [_prefs setInteger:_secondScoreVal forKey:@"secondScore"];
+            [_prefs setInteger:_thirdScoreVal forKey:@"thirdScore"];
+
+
+            
+            [_prefs setInteger:_score forKey:@"secondScore"];
+            
+            
+            [self newScoreAlert];
+//            [_prefs setObject:_userInitials forKey:@"second"];
+            
+        }
+        
+        if (_score < _secondScoreVal && _score > _thirdScoreVal){
+            
+            _tag = 3;
+            _thirdScoreVal =_score;
+            
+    
+            [_prefs setInteger:_thirdScoreVal forKey:@"thirdScore"];
+
+            
+            [self newScoreAlert];
+//            [_prefs setObject:_userInitials forKey:@"third"];
+        
+        }
+        else{
+            _highScoreText.string = [NSString stringWithFormat:@"Try to beat your high score of %li next time!", (long)_firstScoreVal];
+        }
+
         
         [_prefs setInteger:_coins forKey:@"coins"];
         [_prefs setInteger:_lives forKey:@"lives"];
@@ -808,5 +892,40 @@ static const int MOVEBY = 100;
 }
 
 
+-(void)newScoreAlert{
+    
+    UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"New High Score" message:@"Enter your initials" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert addButtonWithTitle:@"Ok"];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        NSLog(@"You have clicked Cancel");
+    }
+    else if(buttonIndex == 1)
+    {
+        _userInitials = [alertView textFieldAtIndex:0];
+        
+        if (_tag ==1) {
+            [_prefs setObject:_userInitials.text forKey:@"first"];
+
+        } else if (_tag == 2){
+            [_prefs setObject:_userInitials.text forKey:@"second"];
+        } else if (_tag==3){
+            [_prefs setObject:_userInitials.text forKey:@"third"];
+
+        }
+        
+        [_prefs synchronize];
+
+    }
+    
+    
+    
+}
 
 @end

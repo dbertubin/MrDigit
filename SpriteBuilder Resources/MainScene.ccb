@@ -840,7 +840,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>Credits</string>
+							<string>Scores</string>
 							<false/>
 						</array>
 					</dict>
@@ -1034,6 +1034,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>

@@ -54,7 +54,7 @@
 }
 
 -(void)credits{
-    CCScene *creditsScene = [CCBReader loadAsScene:@"Credits"];
+    CCScene *creditsScene = [CCBReader loadAsScene:@"Leaderboard"];
     [[CCDirector sharedDirector] replaceScene:creditsScene];
     
     // access audio object
