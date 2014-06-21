@@ -420,8 +420,8 @@ static const int MOVEBY = 100;
         u_int32_t delta = (u_int32_t) (ABS(maxDelay-minDelay)*1000);  // ms resolution
         float randomDelta = arc4random_uniform(delta)/1000.;          // now in seconds
         
-        [self scheduleOnce:@selector(addNinja:) delay:randomDelta];
-        [self scheduleOnce:@selector(addCoin:) delay:randomDelta];
+//        [self scheduleOnce:@selector(addNinja:) delay:randomDelta];
+//        [self scheduleOnce:@selector(addCoin:) delay:randomDelta];
         if (_intensity > 300) {
             [self scheduleOnce:@selector(addDarkNinja:) delay:randomDelta*5];
         }
