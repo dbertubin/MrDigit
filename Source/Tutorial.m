@@ -418,7 +418,7 @@ static const int MOVEBY = 50;
         CCActionMoveTo * moveTo = [CCActionMoveTo actionWithDuration:0.25f position:newlocaton];
         [_walkingDigit runAction:moveTo];
         
-        CCBAnimationManager* animationManager = _walkingDigit.userObject;
+        CCAnimationManager* animationManager = _walkingDigit.userObject;
         [animationManager runAnimationsForSequenceNamed:@"Walking"];
         movedUp = NO;
         
@@ -687,7 +687,7 @@ static const int MOVEBY = 50;
 - (void)startWalking
 {
     // the animation manager of each node is stored in the 'userObject' property
-    CCBAnimationManager* animationManager = _walkingDigit.userObject;
+    CCAnimationManager* animationManager = _walkingDigit.userObject;
     // timelines can be referenced and run by name
     [animationManager runAnimationsForSequenceNamed:@"Walking"];
 }

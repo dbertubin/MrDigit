@@ -8,19 +8,24 @@
 
 #import "MainScene.h"
 
+
 @implementation MainScene
 {
     NSUserDefaults * _prefs;
-    
-    
+    BOOL _gameCenterEnabled;
+    NSString *_leaderboardIdentifier;
 }
 
 - (void)didLoadFromCCB {
     
     
-    
+    [self authenticateLocalPlayer];
     
 }
+
+
+
+
 - (void)play {
     
     _prefs = [NSUserDefaults standardUserDefaults];
@@ -87,6 +92,44 @@
     // play sound effect
     [audio playEffect:@"woodblock_hit.mp3"];
 }
+
+
+-(void)authenticateLocalPlayer{
+    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+    
+    localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error){
+        if (viewController != nil) {
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"gamecenter:"]];
+            
+//            UIView *viewCon = viewController.view;
+//            
+//            [[[CCDirector sharedDirector] view] addSubview:viewCon];
+        }
+        else{
+            if ([GKLocalPlayer localPlayer].authenticated) {
+                _gameCenterEnabled = YES;
+                
+                // Get the default leaderboard identifier.
+                [[GKLocalPlayer localPlayer] loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error) {
+                    
+                    if (error != nil) {
+                        NSLog(@"%@", [error localizedDescription]);
+                    }
+                    else{
+                        _leaderboardIdentifier = leaderboardIdentifier;
+                    }
+                }];
+            }
+            
+            else{
+                _gameCenterEnabled = NO;
+            }
+        }
+    };
+}
+
+
 
 
 @end

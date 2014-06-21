@@ -13,16 +13,24 @@
     CCLabelTTF *_firstText;
     CCLabelTTF *_secondText;
     CCLabelTTF *_thirdText;
-//    CCLabelTTF *_fourthText;
-//    CCLabelTTF *_fifthText;
     
     CCLabelTTF *_firstScore;
     CCLabelTTF *_secondScore;
     CCLabelTTF *_thirdScore;
+    
+    CCLabelTTF *_firstScoreDate;
+    CCLabelTTF *_secondScoreDate;
+    CCLabelTTF *_thirdScoreDate;
+    
     int _firstScoreVal;
     int _secondScoreVal;
     int _thirdScoreVal;
+    
+    NSInteger _firstScoreValAllTime;
+    NSInteger _secondScoreValAllTime;
+    NSInteger _thirdScoreValAllTime;
 
+    NSMutableArray* _firstArray;
     
     NSUserDefaults * _prefs;
 }
@@ -49,7 +57,7 @@
         _thirdText.string =[_prefs stringForKey:@"third"];
     }
     
-
+    
     
     
     if ([_prefs integerForKey:@"firstScore"] > 0) {
@@ -65,7 +73,6 @@
     }
     
 
-    
 }
 
 -(void)onBack{
@@ -79,4 +86,12 @@
     
 }
 
+-(void)onToday{
+    
+
+}
+
+-(void)onAllTime{
+    
+}
 @end

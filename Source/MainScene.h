@@ -7,7 +7,11 @@
 //
 
 #import "CCNode.h"
+#import <GameKit/GameKit.h>
 
 @interface MainScene : CCNode
+
+-(void)authenticateLocalPlayer;
+
 
 @end

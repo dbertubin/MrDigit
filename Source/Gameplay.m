@@ -85,25 +85,32 @@ static const int MOVEBY = 100;
     NSInteger _firstScoreVal;
     NSInteger _secondScoreVal;
     NSInteger _thirdScoreVal;
-    NSInteger _fourthScoreVal;
-    NSInteger _fifthScoreVal;
+
+    NSString *_dateString;
     
-    NSInteger _firstScoreValP;
-    NSInteger _secondScoreValP;
-    NSInteger _thirdScoreValP;
-    NSInteger _fourthScoreValP;
-    NSInteger _fifthScoreValP;
     
+    NSInteger _firstScoreValAllTime;
+    NSInteger _secondScoreValAllTime;
+    NSInteger _thirdScoreValAllTime;
     
     NSMutableArray *_scoreArray;
     UITextField *_userInitials;
     
+    
+    NSMutableArray* _firstArray;
+
     int _tag;
+    
+    NSString *_leaderboardIdentifier;
 }
 
 
 
 - (void)didLoadFromCCB {
+    
+    
+    _leaderboardIdentifier = @"Mr_Digit_Leaderboard";
+    
     
     // set initail paused state
     isPaused =NO;
@@ -121,13 +128,18 @@ static const int MOVEBY = 100;
     _lives = [_prefs integerForKey:@"lives"];
     _darkNinjaBurstCount = [_prefs integerForKey:@"darkninjaburst"];
 
-    _firstScoreVal = [_prefs integerForKey:@"firstScore"];
-    _secondScoreVal = [_prefs integerForKey:@"secondScore"];
-    _thirdScoreVal = [_prefs integerForKey:@"thirdScore"];
-    _fourthScoreVal = [_prefs integerForKey:@"fourthScore"];
-    _fifthScoreVal = [_prefs integerForKey:@"fifthScore"];
+
     
-    _scoreArray = [[NSMutableArray alloc]initWithObjects:[NSNumber numberWithInt:_firstScoreVal],[NSNumber numberWithInt:_secondScoreVal],[NSNumber numberWithInt:_thirdScoreVal],[NSNumber numberWithInt:_fourthScoreVal],[NSNumber numberWithInt:_fifthScoreVal], nil];
+    _firstScoreVal = [_prefs integerForKey:@"firstScore"];
+//    _secondScoreVal = [_prefs integerForKey:@"secondScore"];
+//    _thirdScoreVal = [_prefs integerForKey:@"thirdScore"];
+//
+//    
+//    _firstScoreValAllTime = [_prefs integerForKey:@"firstScoreAllTime"];
+//    _secondScoreValAllTime = [_prefs integerForKey:@"secondScoreAllTime"];
+//    _thirdScoreValAllTime = [_prefs integerForKey:@"thirdScoreAllTime"];
+//    
+
     
     
     
@@ -457,7 +469,7 @@ static const int MOVEBY = 100;
         CCActionMoveTo * moveTo = [CCActionMoveTo actionWithDuration:0.20f position:newlocaton];
         [_walkingDigit runAction:moveTo];
         
-        CCBAnimationManager* animationManager = _walkingDigit.userObject;
+        CCAnimationManager* animationManager = _walkingDigit.userObject;
         [animationManager runAnimationsForSequenceNamed:@"Walking"];
         movedUp = NO;
         
@@ -780,7 +792,7 @@ static const int MOVEBY = 100;
 - (void)startWalking
 {
     // the animation manager of each node is stored in the 'userObject' property
-    CCBAnimationManager* animationManager = _walkingDigit.userObject;
+    CCAnimationManager* animationManager = _walkingDigit.userObject;
     // timelines can be referenced and run by name
     [animationManager runAnimationsForSequenceNamed:@"Walking"];
 }
@@ -795,6 +807,8 @@ static const int MOVEBY = 100;
     }
     else if(_lives ==0)
     {
+        [self reportScore];
+        
         _menuButton.visible= NO;
         _mmButton.visible = YES;
         _physicsNode.paused = YES;
@@ -805,6 +819,12 @@ static const int MOVEBY = 100;
         _scoreLabelLabel.visible =NO;
         _coinLabel.visible = NO;
         
+        
+        NSDate *localDate = [NSDate date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        dateFormatter.dateFormat = @"MM/dd/yy";
+        
+        _dateString = [dateFormatter stringFromDate: localDate];
         
         // remove touch thingys
         [[[CCDirector sharedDirector] view] removeGestureRecognizer:_swipeRight];
@@ -819,29 +839,32 @@ static const int MOVEBY = 100;
         _prefs = [NSUserDefaults standardUserDefaults];
         
         
+
+        
+        
         if (_score > _firstScoreVal) {
             
             _tag= 1;
             
             // BUMP THE VALUES DOWN THE CHAIN
-
+            
             _thirdScoreVal =_secondScoreVal;
             _secondScoreVal = _firstScoreVal;
             _firstScoreVal = _score;
             
             CCLOG(@"%i",_secondScoreVal);
             CCLOG(@"%i",_thirdScoreVal);
-
+            
             
             
             _highScoreText.string = [NSString stringWithFormat:@"Congratulations you beat your high score!\nThe new one is %i", _score];
             [_prefs setInteger:_firstScoreVal forKey:@"firstScore"];
             [_prefs setInteger:_secondScoreVal forKey:@"secondScore"];
             [_prefs setInteger:_thirdScoreVal forKey:@"thirdScore"];
-
+            
             
             [self newScoreAlert];
-//            [_prefs setObject:_userInitials.text forKey:@"first"];
+            //            [_prefs setObject:_userInitials.text forKey:@"first"];
             CCLOG(@"%@",_userInitials.text);
         }
         
@@ -854,14 +877,14 @@ static const int MOVEBY = 100;
             
             [_prefs setInteger:_secondScoreVal forKey:@"secondScore"];
             [_prefs setInteger:_thirdScoreVal forKey:@"thirdScore"];
-
-
+            
+            
             
             [_prefs setInteger:_score forKey:@"secondScore"];
             
             
             [self newScoreAlert];
-//            [_prefs setObject:_userInitials forKey:@"second"];
+            //            [_prefs setObject:_userInitials forKey:@"second"];
             
         }
         
@@ -870,26 +893,26 @@ static const int MOVEBY = 100;
             _tag = 3;
             _thirdScoreVal =_score;
             
-    
+            
             [_prefs setInteger:_thirdScoreVal forKey:@"thirdScore"];
-
+            
             
             [self newScoreAlert];
-//            [_prefs setObject:_userInitials forKey:@"third"];
-        
+            //            [_prefs setObject:_userInitials forKey:@"third"];
+            
         }
         else{
             _highScoreText.string = [NSString stringWithFormat:@"Try to beat your high score of %li next time!", (long)_firstScoreVal];
         }
-
+        
         
         [_prefs setInteger:_coins forKey:@"coins"];
         [_prefs setInteger:_lives forKey:@"lives"];
         [_prefs setInteger:_darkNinjaBurstCount forKey:@"darkninjaburst"];
         [_prefs synchronize];
     }
-    
 }
+
 
 
 -(void)newScoreAlert{
@@ -912,20 +935,29 @@ static const int MOVEBY = 100;
         
         if (_tag ==1) {
             [_prefs setObject:_userInitials.text forKey:@"first"];
-
+            
         } else if (_tag == 2){
             [_prefs setObject:_userInitials.text forKey:@"second"];
         } else if (_tag==3){
             [_prefs setObject:_userInitials.text forKey:@"third"];
-
+            
         }
         
         [_prefs synchronize];
-
+        
     }
     
+}
+
+-(void)reportScore{
+    GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:_leaderboardIdentifier];
+    score.value = _score;
     
-    
+    [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }];
 }
 
 @end
