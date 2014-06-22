@@ -132,8 +132,8 @@ static const int MOVEBY = 100;
 
     
     _firstScoreVal = [_prefs integerForKey:@"firstScore"];
-//    _secondScoreVal = [_prefs integerForKey:@"secondScore"];
-//    _thirdScoreVal = [_prefs integerForKey:@"thirdScore"];
+    _secondScoreVal = [_prefs integerForKey:@"secondScore"];
+    _thirdScoreVal = [_prefs integerForKey:@"thirdScore"];
 //
 //    
 //    _firstScoreValAllTime = [_prefs integerForKey:@"firstScoreAllTime"];
