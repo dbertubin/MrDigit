@@ -12,6 +12,7 @@
 #import "WalkingDigit.h"
 #import "Coin.h"
 #import <GameKit/GameKit.h>
+#import <Social/Social.h>
 
 @interface Gameplay : CCNode <CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate>
 

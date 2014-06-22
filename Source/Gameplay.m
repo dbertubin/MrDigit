@@ -32,6 +32,7 @@ static const int MOVEBY = 100;
     CCButton *_mmButton;
     CCButton *_menuButton;
     CCButton *_replayButton;
+    CCButton *_shareButton;
     CCButton *_darkNinjaBurstButton;
     CCLabelTTF *_gameOverLabel;
     CCLabelTTF *_scoreLabel;
@@ -160,7 +161,6 @@ static const int MOVEBY = 100;
     
     _walkingDigit = (WalkingDigit*)[CCBReader load:@"WalkingDigit"];
     [_physicsNode addChild:_walkingDigit];
-    _walkingDigit.physicsBody.collisionType =@"walkingdigit";
     _walkingDigit.position = ccp(25, 45);
     _walkingDigit.scale = 2;
     
@@ -420,8 +420,8 @@ static const int MOVEBY = 100;
         u_int32_t delta = (u_int32_t) (ABS(maxDelay-minDelay)*1000);  // ms resolution
         float randomDelta = arc4random_uniform(delta)/1000.;          // now in seconds
         
-//        [self scheduleOnce:@selector(addNinja:) delay:randomDelta];
-//        [self scheduleOnce:@selector(addCoin:) delay:randomDelta];
+        [self scheduleOnce:@selector(addNinja:) delay:randomDelta];
+        [self scheduleOnce:@selector(addCoin:) delay:randomDelta];
         if (_intensity > 300) {
             [self scheduleOnce:@selector(addDarkNinja:) delay:randomDelta*5];
         }
@@ -838,12 +838,12 @@ static const int MOVEBY = 100;
         // clean up and sets scores
         _prefs = [NSUserDefaults standardUserDefaults];
         
-        
+    
 
         
         
         if (_score > _firstScoreVal) {
-            
+
             _tag= 1;
             
             // BUMP THE VALUES DOWN THE CHAIN
@@ -864,13 +864,11 @@ static const int MOVEBY = 100;
             
             
             [self newScoreAlert];
-            //            [_prefs setObject:_userInitials.text forKey:@"first"];
-            CCLOG(@"%@",_userInitials.text);
         }
         
         
         if (_score < _firstScoreVal &&  _score > _secondScoreVal){
-            
+
             _tag = 2;
             _thirdScoreVal =_secondScoreVal;
             _secondScoreVal = _score;
@@ -889,7 +887,7 @@ static const int MOVEBY = 100;
         }
         
         if (_score < _secondScoreVal && _score > _thirdScoreVal){
-            
+
             _tag = 3;
             _thirdScoreVal =_score;
             
@@ -936,6 +934,7 @@ static const int MOVEBY = 100;
         if (_tag ==1) {
             [_prefs setObject:_userInitials.text forKey:@"first"];
             
+            
         } else if (_tag == 2){
             [_prefs setObject:_userInitials.text forKey:@"second"];
         } else if (_tag==3){
@@ -944,6 +943,8 @@ static const int MOVEBY = 100;
         }
         
         [_prefs synchronize];
+        
+       
         
     }
     
@@ -958,6 +959,34 @@ static const int MOVEBY = 100;
             NSLog(@"%@", [error localizedDescription]);
         }
     }];
+}
+
+-(void)makePost{
+    SLComposeViewController * postController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+    if (postController != nil)
+    {
+        
+        ;
+        [postController setInitialText:[NSString stringWithFormat:@"I, %@ just scored %i playing Mr. Digit!", [_prefs objectForKey:@"first"], _score]];
+        
+
+        [[CCDirector sharedDirector] presentViewController:postController animated:YES completion:nil];
+        
+        postController.completionHandler = ^(SLComposeViewControllerResult result)
+        {
+            if (result == SLComposeViewControllerResultDone)
+            {
+                    [[CCDirector sharedDirector] dismissViewControllerAnimated:YES completion:nil];
+            }
+            else if (result == SLComposeViewControllerResultCancelled)
+            {
+                [[CCDirector sharedDirector] dismissViewControllerAnimated:YES completion:nil];
+                NSLog(@"User Cancelled");
+            }
+        };
+        
+        
+    }
 }
 
 @end

@@ -94,4 +94,40 @@
 -(void)onAllTime{
     
 }
+
+
+-(void)makePost:(NSString*)conCatedStringWithItem
+{
+    SLComposeViewController * postController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+    if (postController != nil)
+    {
+        
+        
+        [postController setInitialText:conCatedStringWithItem];
+        
+        UIView *view = postController.view;
+        
+        [[[CCDirector sharedDirector] view] addSubview:view];
+//        [self presentViewController:postController animated:YES completion:nil];
+        
+        postController.completionHandler = ^(SLComposeViewControllerResult result)
+        {
+            if (result == SLComposeViewControllerResultDone)
+            {
+                [[[CCDirector sharedDirector] view]removeFromSuperview];
+//                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+            else if (result == SLComposeViewControllerResultCancelled)
+            {
+                [[[CCDirector sharedDirector] view]removeFromSuperview];
+//                [self dismissViewControllerAnimated:YES completion:nil];
+                NSLog(@"User Cancelled");
+            }
+        };
+        
+        
+    }
+}
+
+
 @end

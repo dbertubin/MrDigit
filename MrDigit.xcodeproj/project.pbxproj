@@ -40,6 +40,7 @@
 		E530B005191C6DEF0030AC78 /* woodblock_hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E530B004191C6DEF0030AC78 /* woodblock_hit.mp3 */; };
 		E530B007191C738B0030AC78 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E530B006191C738B0030AC78 /* background.mp3 */; };
 		E53D373C1944F6D80044E86B /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = E53D373B1944F6D80044E86B /* Store.m */; };
+		E5424CB21956736B00E0DAED /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5424CB11956736B00E0DAED /* Social.framework */; };
 		E549C2EF1932BBD8002F8641 /* NinjaBurst.m in Sources */ = {isa = PBXBuildFile; fileRef = E549C2EE1932BBD8002F8641 /* NinjaBurst.m */; };
 		E549C2F31933DD16002F8641 /* Credits.m in Sources */ = {isa = PBXBuildFile; fileRef = E549C2F21933DD16002F8641 /* Credits.m */; };
 		E556111D1953C690009BBEA9 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E556111C1953C690009BBEA9 /* GameKit.framework */; };
@@ -116,6 +117,7 @@
 		E530B006191C738B0030AC78 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
 		E53D373A1944F6D80044E86B /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Store.h; path = Source/Store.h; sourceTree = "<group>"; };
 		E53D373B1944F6D80044E86B /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Store.m; path = Source/Store.m; sourceTree = "<group>"; };
+		E5424CB11956736B00E0DAED /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		E549C2ED1932BBD8002F8641 /* NinjaBurst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NinjaBurst.h; path = Source/NinjaBurst.h; sourceTree = "<group>"; };
 		E549C2EE1932BBD8002F8641 /* NinjaBurst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NinjaBurst.m; path = Source/NinjaBurst.m; sourceTree = "<group>"; };
 		E549C2F11933DD16002F8641 /* Credits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credits.h; path = Source/Credits.h; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5424CB21956736B00E0DAED /* Social.framework in Frameworks */,
 				E5A7E83F19551E4B002C0A23 /* GLKit.framework in Frameworks */,
 				E556111D1953C690009BBEA9 /* GameKit.framework in Frameworks */,
 				B737898A1807642B0076A88C /* libcocos2d.a in Frameworks */,
@@ -237,6 +240,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5424CB11956736B00E0DAED /* Social.framework */,
 				E5A7E83E19551E4B002C0A23 /* GLKit.framework */,
 				E556111C1953C690009BBEA9 /* GameKit.framework */,
 				B7B3713D180358F1007369CC /* libObjectiveChipmunk.a */,

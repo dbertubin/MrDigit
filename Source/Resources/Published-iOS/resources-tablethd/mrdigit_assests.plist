@@ -46,7 +46,7 @@
 		<key>mrdigit_assests/burstLabel.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{69, 4035}, {66, 50}}</string>
+			<string>{{164, 4035}, {66, 50}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -85,7 +85,7 @@
 		<key>mrdigit_assests/digit_standing2x.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{184, 3967}, {64, 184}}</string>
+			<string>{{279, 3967}, {64, 184}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -98,7 +98,7 @@
 		<key>mrdigit_assests/dnBurst.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 4035}, {66, 50}}</string>
+			<string>{{96, 4035}, {66, 50}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -107,6 +107,32 @@
 			<string>{{0, 0}, {66, 50}}</string>
 			<key>sourceSize</key>
 			<string>{66, 50}</string>
+		</dict>
+		<key>mrdigit_assests/facebook.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 3967}, {96, 93}}</string>
+			<key>offset</key>
+			<string>{0, -1}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 3}, {96, 93}}</string>
+			<key>sourceSize</key>
+			<string>{96, 96}</string>
+		</dict>
+		<key>mrdigit_assests/fb_icon_325x325.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1393, 1}, {650, 650}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {650, 650}}</string>
+			<key>sourceSize</key>
+			<string>{650, 650}</string>
 		</dict>
 		<key>mrdigit_assests/frameGuide.png</key>
 		<dict>
@@ -150,7 +176,7 @@
 		<key>mrdigit_assests/ninja_standing2x.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 3967}, {66, 181}}</string>
+			<string>{{96, 3967}, {66, 181}}</string>
 			<key>offset</key>
 			<string>{-2, 0}</string>
 			<key>rotated</key>
@@ -163,7 +189,7 @@
 		<key>mrdigit_assests/sky.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1393, 1}, {966, 648}}</string>
+			<string>{{1393, 653}, {966, 648}}</string>
 			<key>offset</key>
 			<string>{0, -15}</string>
 			<key>rotated</key>

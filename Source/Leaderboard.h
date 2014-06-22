@@ -7,6 +7,7 @@
 //
 
 #import "CCNode.h"
+#import <Social/Social.h>
 
 @interface Leaderboard : CCNode
 
