@@ -967,7 +967,7 @@ static const int MOVEBY = 100;
     {
         
         ;
-        [postController setInitialText:[NSString stringWithFormat:@"I, %@ just scored %i playing Mr. Digit!", [_prefs objectForKey:@"first"], _score]];
+        [postController setInitialText:[NSString stringWithFormat:@"I, %@ made a score of %i playing Mr. Digit!", [_prefs objectForKey:@"first"], _score]];
         
 
         [[CCDirector sharedDirector] presentViewController:postController animated:YES completion:nil];
