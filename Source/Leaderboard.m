@@ -31,6 +31,7 @@
     NSInteger _thirdScoreValAllTime;
 
     NSMutableArray* _firstArray;
+    NSString* leaderboardID;
     
     NSUserDefaults * _prefs;
 }
@@ -39,7 +40,7 @@
 - (void)didLoadFromCCB {
     _prefs = [NSUserDefaults standardUserDefaults];
     CCLOG(@"%@",[_prefs stringForKey:@"first"]);
-    
+    leaderboardID = @"Mr_Digit_Leaderboard";
     
     // Set first place text from NSUD
     if ([_prefs stringForKey:@"first"] != nil) {
@@ -129,5 +130,25 @@
     }
 }
 
+
+-(void)onGC{
+    [self showLeaderboard:leaderboardID];
+}
+
+- (void) showLeaderboard: (NSString*) leaderboardID
+{
+    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+    if (gameCenterController != nil)
+    {
+        gameCenterController.gameCenterDelegate = self;
+        gameCenterController.viewState = GKGameCenterViewControllerStateAchievements;
+        [[CCDirector sharedDirector] presentViewController: gameCenterController animated: YES completion:nil];
+    }
+}
+
+-(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

@@ -17,7 +17,7 @@
 }
 
 - (void)didLoadFromCCB {
-    
+        
     
     [self authenticateLocalPlayer];
     
@@ -29,7 +29,7 @@
 - (void)play {
     
     _prefs = [NSUserDefaults standardUserDefaults];
-//    if ([_prefs boolForKey:@"firstRun"] == YES) {
+    if ([_prefs boolForKey:@"firstRun"] == NO) {
     
         
         CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];
@@ -40,22 +40,22 @@
         // play sound effect
         [audio playEffect:@"woodblock_hit.mp3"];
         
-//    }
-//    else
-//    {
-//        CCScene *tutScene = [CCBReader loadAsScene:@"Tutorial"];
-//        [[CCDirector sharedDirector] replaceScene:tutScene];
-//        
-//        // access audio object
-//        OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
-//        // play sound effect
-//        [audio playEffect:@"woodblock_hit.mp3"];
-//        
-//        [_prefs setBool:YES forKey:@"firstRun"];
-//        [_prefs synchronize];
-//    }
-//    
-//    
+    }
+    else
+    {
+        CCScene *tutScene = [CCBReader loadAsScene:@"Tutorial"];
+        [[CCDirector sharedDirector] replaceScene:tutScene];
+        
+        // access audio object
+        OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+        // play sound effect
+        [audio playEffect:@"woodblock_hit.mp3"];
+        
+        [_prefs setBool:NO forKey:@"firstRun"];
+        [_prefs synchronize];
+    }
+    
+    
 }
 
 -(void)credits{

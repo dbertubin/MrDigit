@@ -10,8 +10,9 @@
 #import "Burst.h"
 #import "Ninja.h"
 #import "WalkingDigit.h"
+#import <GameKit/GameKit.h>
 #import "Coin.h"
 
-@interface Tutorial : CCNode <CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate>
+@interface Tutorial : CCNode <CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate, GKGameCenterControllerDelegate>
 
 @end

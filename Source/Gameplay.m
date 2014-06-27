@@ -49,11 +49,9 @@ static const int MOVEBY = 100;
     CCNode *_coin;
     CCNode *_ninjaBurst;
     CCNode *_darkNinjaBurst;
+    
     NSUserDefaults * _prefs;
     
-    
-    CGSize _winSize;
-    int _atCenter;
     
     float _intensity;
     
@@ -89,20 +87,27 @@ static const int MOVEBY = 100;
 
     NSString *_dateString;
     
-    
     NSInteger _firstScoreValAllTime;
     NSInteger _secondScoreValAllTime;
     NSInteger _thirdScoreValAllTime;
     
     NSMutableArray *_scoreArray;
     UITextField *_userInitials;
-    
-    
-    NSMutableArray* _firstArray;
 
     int _tag;
     
     NSString *_leaderboardIdentifier;
+    
+    Score* _scoreToBeSaved;
+    
+    // For measuremnt
+    int _coinsCreated;
+    int _coinsThisGame;
+    
+    
+    int _shotsFired;
+    int _kills;
+    
 }
 
 
@@ -129,19 +134,14 @@ static const int MOVEBY = 100;
     _lives = [_prefs integerForKey:@"lives"];
     _darkNinjaBurstCount = [_prefs integerForKey:@"darkninjaburst"];
 
+    _scoreArray = [_prefs objectForKey:@"scoreArray"];
+    Score *test = [[Score alloc]init];
+    test = [_scoreArray objectAtIndex:0];
 
     
     _firstScoreVal = [_prefs integerForKey:@"firstScore"];
     _secondScoreVal = [_prefs integerForKey:@"secondScore"];
     _thirdScoreVal = [_prefs integerForKey:@"thirdScore"];
-//
-//    
-//    _firstScoreValAllTime = [_prefs integerForKey:@"firstScoreAllTime"];
-//    _secondScoreValAllTime = [_prefs integerForKey:@"secondScoreAllTime"];
-//    _thirdScoreValAllTime = [_prefs integerForKey:@"thirdScoreAllTime"];
-//    
-
-    
     
     
     // Set menus to invisible
@@ -566,6 +566,7 @@ static const int MOVEBY = 100;
 
 - (void)addCoin:(CCTime)dt {
     
+    _coinsCreated++;
     
     int sort = 0;
     sort ++;
@@ -607,7 +608,7 @@ static const int MOVEBY = 100;
         CGPoint force = ccpMult(launchDirection, 500000);
         [_burst.physicsBody applyForce:force];
     }
-    
+    _shotsFired++;
 }
 
 - (void)launchDarkNinjaBurst{
@@ -681,7 +682,7 @@ static const int MOVEBY = 100;
     [self ninjaRemoved:nodeA];
     [self burstRemoved:nodeB];
     [_audio playEffect:@"hit_sound.mp3"];
-    
+
 }
 
 
@@ -726,6 +727,8 @@ static const int MOVEBY = 100;
     _coins++;
     [self coinRemoved:nodeA];
     //        [_audio playEffect:@"hit_sound.mp3"];
+    _coinsThisGame++;
+
     
     
 }
@@ -797,7 +800,7 @@ static const int MOVEBY = 100;
     [animationManager runAnimationsForSequenceNamed:@"Walking"];
 }
 
-
+#pragma mark - Game Over
 -(void)gameOver{
     
     if (_lives > 0)
@@ -808,7 +811,9 @@ static const int MOVEBY = 100;
     else if(_lives ==0)
     {
         [self reportScore];
+        [self updateAchievements];
         
+        // Toggle Views
         _menuButton.visible= NO;
         _mmButton.visible = YES;
         _physicsNode.paused = YES;
@@ -820,6 +825,7 @@ static const int MOVEBY = 100;
         _coinLabel.visible = NO;
         
         
+        // This was for the leaderboard filter but havent used it yet.
         NSDate *localDate = [NSDate date];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         dateFormatter.dateFormat = @"MM/dd/yy";
@@ -839,30 +845,36 @@ static const int MOVEBY = 100;
         _prefs = [NSUserDefaults standardUserDefaults];
         
     
-
+        /**************************************************
+         
+         LEADERBOARD STUFF
+         
+         **************************************************/
         
         
+        // If player scores higher than previous score.
         if (_score > _firstScoreVal) {
 
+            // Set int tag for alert
             _tag= 1;
             
-            // BUMP THE VALUES DOWN THE CHAIN
-            
+            // BUMP THE VALUES DOWN THE CHAIn
             _thirdScoreVal =_secondScoreVal;
             _secondScoreVal = _firstScoreVal;
             _firstScoreVal = _score;
             
-            CCLOG(@"%i",_secondScoreVal);
-            CCLOG(@"%i",_thirdScoreVal);
             
-            
-            
+            // Set String val for the label
             _highScoreText.string = [NSString stringWithFormat:@"Congratulations you beat your high score!\nThe new one is %i", _score];
+            
+            // Save scores to NSUD
             [_prefs setInteger:_firstScoreVal forKey:@"firstScore"];
             [_prefs setInteger:_secondScoreVal forKey:@"secondScore"];
             [_prefs setInteger:_thirdScoreVal forKey:@"thirdScore"];
             
             
+            
+            // Show alerts
             [self newScoreAlert];
         }
         
@@ -876,14 +888,9 @@ static const int MOVEBY = 100;
             [_prefs setInteger:_secondScoreVal forKey:@"secondScore"];
             [_prefs setInteger:_thirdScoreVal forKey:@"thirdScore"];
             
-            
-            
             [_prefs setInteger:_score forKey:@"secondScore"];
-            
-            
+        
             [self newScoreAlert];
-            //            [_prefs setObject:_userInitials forKey:@"second"];
-            
         }
         
         if (_score < _secondScoreVal && _score > _thirdScoreVal){
@@ -891,19 +898,19 @@ static const int MOVEBY = 100;
             _tag = 3;
             _thirdScoreVal =_score;
             
-            
             [_prefs setInteger:_thirdScoreVal forKey:@"thirdScore"];
-            
-            
+        
             [self newScoreAlert];
-            //            [_prefs setObject:_userInitials forKey:@"third"];
-            
         }
         else{
             _highScoreText.string = [NSString stringWithFormat:@"Try to beat your high score of %li next time!", (long)_firstScoreVal];
         }
         
         
+   
+        
+        
+        // Save values for coins, lives and burst count to NSUD
         [_prefs setInteger:_coins forKey:@"coins"];
         [_prefs setInteger:_lives forKey:@"lives"];
         [_prefs setInteger:_darkNinjaBurstCount forKey:@"darkninjaburst"];
@@ -912,7 +919,7 @@ static const int MOVEBY = 100;
 }
 
 
-
+#pragma mark - Game Over Support Methods
 -(void)newScoreAlert{
     
     UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"New High Score" message:@"Enter your initials" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
@@ -933,19 +940,21 @@ static const int MOVEBY = 100;
         
         if (_tag ==1) {
             [_prefs setObject:_userInitials.text forKey:@"first"];
+            _scoreToBeSaved = [[Score alloc]init];
+            [_scoreToBeSaved setInitals:_userInitials.text];
+            [_scoreToBeSaved setDate:_dateString];
+            [_scoreToBeSaved setScore:_score];
             
+            [_scoreArray addObject:_scoreToBeSaved];
+        
+            [_prefs setObject:_scoreArray forKey:@"scoreArray"];
             
         } else if (_tag == 2){
             [_prefs setObject:_userInitials.text forKey:@"second"];
         } else if (_tag==3){
             [_prefs setObject:_userInitials.text forKey:@"third"];
-            
         }
-        
         [_prefs synchronize];
-        
-       
-        
     }
     
 }
@@ -965,7 +974,6 @@ static const int MOVEBY = 100;
     SLComposeViewController * postController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
     if (postController != nil)
     {
-        
         ;
         [postController setInitialText:[NSString stringWithFormat:@"I, %@ made a score of %i playing Mr. Digit!", [_prefs objectForKey:@"first"], _score]];
         
@@ -985,8 +993,126 @@ static const int MOVEBY = 100;
             }
         };
         
-        
     }
 }
+
+
+-(void)showLeaderboardAndAchievements:(BOOL)shouldShowLeaderboard{
+    GKGameCenterViewController *gcViewController = [[GKGameCenterViewController alloc] init];
+    
+    gcViewController.gameCenterDelegate = self;
+    
+    if (shouldShowLeaderboard) {
+        gcViewController.viewState = GKGameCenterViewControllerStateLeaderboards;
+        gcViewController.leaderboardIdentifier = _leaderboardIdentifier;
+    }
+    else{
+        gcViewController.viewState = GKGameCenterViewControllerStateAchievements;
+    }
+    
+    [[CCDirector sharedDirector]presentViewController:gcViewController animated:YES completion:nil];
+}
+
+-(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+
+/******************************************************
+ 
+ ACHIEVEMENTS STUFFS
+ 
+ ******************************************************/
+
+
+
+
+
+// Completions Achievement is in the TUT
+
+
+-(void)updateAchievements{
+    NSString *achievementIdentifier;
+    float progressPercentage = 0.0;
+    BOOL progressInLevelAchievement = NO;
+    
+    GKAchievement *scoreAchievement = nil;
+    GKAchievement *measurementAchievment = nil;
+    GKAchievement *negativeAchivement = nil;
+
+    /**********************************************************
+     
+    Incremental Achievement
+     
+    **********************************************************/
+    // Increment 1
+    if (_score <= 20) {
+        progressPercentage = 100;
+        achievementIdentifier = @"Achievement_20Points";
+    }
+    
+    // Increment 2
+    else if (_score <= 50){
+        progressPercentage = 100;
+        achievementIdentifier = @"Achievement_50Points";
+    }
+    
+    // Increment 3
+
+    else if (_score >=100){
+        progressPercentage = 100;
+        achievementIdentifier = @"Achievement_100Points";
+    }
+    
+    scoreAchievement = [[GKAchievement alloc] initWithIdentifier:achievementIdentifier];
+    scoreAchievement.percentComplete = progressPercentage;
+    scoreAchievement.showsCompletionBanner = TRUE;
+    
+    // Measurement Achievement
+    if (_coinsCreated >= 10) {
+        if(_coinsThisGame== _coinsCreated) {
+            // Measurement here
+            achievementIdentifier = @"Measurement_Achievement_100";
+            measurementAchievment = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+            measurementAchievment.percentComplete = progressPercentage;
+        }
+    }
+    
+    
+    NSArray *achievements = (progressInLevelAchievement) ? @[scoreAchievement,measurementAchievment,negativeAchivement] : @[scoreAchievement];
+    
+    [GKAchievement reportAchievements:achievements withCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@&", [error localizedDescription]);
+        }
+    }];
+    
+    float acc = _shotsFired/_score;
+    
+    if (acc > 5) {
+        achievementIdentifier = @"Negative_Achievement";
+        negativeAchivement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+        negativeAchivement.percentComplete = progressPercentage;
+        negativeAchivement.showsCompletionBanner =YES;
+        
+        NSArray *achievements = (progressInLevelAchievement) ? @[negativeAchivement] : @[negativeAchivement];
+        
+        [GKAchievement reportAchievements:achievements withCompletionHandler:^(NSError *error) {
+            if (error != nil) {
+                NSLog(@"%@", [error localizedDescription]);
+            }
+        }];
+    }
+
+    
+    
+    
+
+}
+
+
 
 @end

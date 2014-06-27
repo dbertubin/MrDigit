@@ -11,9 +11,10 @@
 #import "Ninja.h"
 #import "WalkingDigit.h"
 #import "Coin.h"
+#import "Score.h"
 #import <GameKit/GameKit.h>
 #import <Social/Social.h>
 
-@interface Gameplay : CCNode <CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate>
+@interface Gameplay : CCNode <CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate, GKGameCenterControllerDelegate>
 
 @end

@@ -101,12 +101,18 @@ static const int MOVEBY = 50;
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
     
-    // visualize physics bodies & joints
-//    _physicsNode.debugDraw = TRUE;
+    
+    
+    _walkingDigit = (WalkingDigit*)[CCBReader load:@"WalkingDigit"];
+    [_physicsNode addChild:_walkingDigit];
+    _walkingDigit.position = ccp(80, 60);
+    _walkingDigit.scale = 2;
+
+    
     
     _audio= [OALSimpleAudio sharedInstance];
     // play sound background
-    [_audio playBg:@"background.mp3" loop:true];
+//    [_audio playBg:@"background.mp3" loop:true];
     
     
     [self scheduleOnce:@selector(addNinja:) delay:.1];
@@ -195,6 +201,43 @@ static const int MOVEBY = 50;
     _fireBallText.string = @"Excellent!!! Now you know how to play.\nTap Play to play a game.";
     _playButton.visible=YES;
     
+    [self updateAchievements];
+    
+}
+
+
+
+
+
+-(void)updateAchievements{
+    NSString *achievementIdentifier;
+    float progressPercentage = 0.0;
+    BOOL progressInLevelAchievement = NO;
+    
+    GKAchievement *scoreAchievement = nil;
+    
+    progressPercentage = 100;
+    achievementIdentifier = @"Tutorial_Completion";
+ 
+    scoreAchievement.showsCompletionBanner = YES;
+    scoreAchievement = [[GKAchievement alloc] initWithIdentifier:achievementIdentifier];
+    scoreAchievement.percentComplete = progressPercentage;
+    
+    NSArray *achievements = (progressInLevelAchievement) ? @[scoreAchievement] : @[scoreAchievement];
+    
+    [GKAchievement reportAchievements:achievements withCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }];
+}
+
+
+
+
+-(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Button actions
@@ -373,14 +416,7 @@ static const int MOVEBY = 50;
         minDelay = 0.5;
         maxDelay = 3.0;
     }
-    
-    
-    /********************************************************************************
-     Point Detection
-     *******************************************************************************/
-    
-    
-    
+
     /*****************************************************************************
      Managing Objects
      *****************************************************************************/
@@ -400,11 +436,6 @@ static const int MOVEBY = 50;
     }
     
     
-//    if (_coin.position.x <=  -10 || _coin.position.y > self.boundingBox.size.height || _coin.position.x >= self.boundingBox.size.width + 20) {
-//        
-//        [_coin removeFromParent];
-//        
-//    }
     
     /*****************************************************************************
      Movements Based on Delta
@@ -523,6 +554,8 @@ static const int MOVEBY = 50;
         // loads the Penguin.ccb we have set up in Spritebuilder
         _burst = [CCBReader load:@"Burst"];
         _burst.scale = .5f;
+        _burst.physicsBody.collisionGroup = @"groupb";
+        _burst.physicsBody.collisionGroup = @"group";
         CCLOG(@"loads the Burst.ccb");
         
         _burst.position = ccpAdd(_walkingDigit.position, ccp(35 , 10));
@@ -549,6 +582,8 @@ static const int MOVEBY = 50;
     _ninjaBurst = [CCBReader load:@"NinjaBurst"];
     _ninjaBurst.scale = .5f;
     _ninjaBurst.zOrder = sort;
+    _ninjaBurst.physicsBody.collisionGroup = @"ninjaToNinjaBurst";
+    _ninjaBurst.physicsBody.collisionGroup = @"group";
     CCLOG(@"loads the Burst.ccb");
     
     _ninjaBurst.position = ccpAdd(_ninja.position, ccp(-35 , 20));

@@ -8,7 +8,8 @@
 
 #import "CCNode.h"
 #import <Social/Social.h>
+#import <GameKit/GameKit.h>
 
-@interface Leaderboard : CCNode
+@interface Leaderboard : CCNode <GKGameCenterControllerDelegate>
 
 @end
