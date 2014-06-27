@@ -107,7 +107,7 @@ static const int MOVEBY = 100;
     
     int _shotsFired;
     int _kills;
-    
+    float acc;
 }
 
 
@@ -1076,13 +1076,13 @@ static const int MOVEBY = 100;
         if(_coinsThisGame== _coinsCreated) {
             // Measurement here
             achievementIdentifier = @"Measurement_Achievement_100";
-            measurementAchievment = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
-            measurementAchievment.percentComplete = progressPercentage;
+            scoreAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+            scoreAchievement.percentComplete = progressPercentage;
         }
     }
     
     
-    NSArray *achievements = (progressInLevelAchievement) ? @[scoreAchievement,measurementAchievment,negativeAchivement] : @[scoreAchievement];
+    NSArray *achievements = (progressInLevelAchievement) ? @[scoreAchievement,measurementAchievment] : @[scoreAchievement];
     
     [GKAchievement reportAchievements:achievements withCompletionHandler:^(NSError *error) {
         if (error != nil) {
@@ -1090,22 +1090,28 @@ static const int MOVEBY = 100;
         }
     }];
     
-    float acc = _shotsFired/_score;
-    
-    if (acc > 5) {
-        achievementIdentifier = @"Negative_Achievement";
-        negativeAchivement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
-        negativeAchivement.percentComplete = progressPercentage;
-        negativeAchivement.showsCompletionBanner =YES;
+    if (_score > 0) {
+        acc = _shotsFired/_score;
+        CCLOG(@"%f",acc);
         
-        NSArray *achievements = (progressInLevelAchievement) ? @[negativeAchivement] : @[negativeAchivement];
-        
-        [GKAchievement reportAchievements:achievements withCompletionHandler:^(NSError *error) {
-            if (error != nil) {
-                NSLog(@"%@", [error localizedDescription]);
-            }
-        }];
+        if (acc > 3) {
+            achievementIdentifier = @"Negative_Achievement";
+            scoreAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+            scoreAchievement.percentComplete = progressPercentage;
+            scoreAchievement.showsCompletionBanner =YES;
+            
+            NSArray *achievements = (progressInLevelAchievement) ? @[scoreAchievement] : @[scoreAchievement];
+            
+            [GKAchievement reportAchievements:achievements withCompletionHandler:^(NSError *error) {
+                if (error != nil) {
+                    NSLog(@"%@", [error localizedDescription]);
+                }
+            }];
+        }
     }
+    
+    
+    
 
     
     
